@@ -1,0 +1,239 @@
+---
+// Navbar.astro
+---
+
+<nav class="navbar">
+    <div class="navbar-container">
+      <!-- Logo y título principal -->
+      <div class="navbar-brand">
+        <div class="logo-container">
+          <img src="/logo-uni.png" alt="Logo Universidad de Pamplona" class="university-logo" />
+        </div>
+        <div class="brand-text">
+          <h1 class="university-name">
+            UNIVERSIDAD DE <span class="highlight">PAMPLONA</span>
+          </h1>
+          <p class="tagline">
+            Formando <span class="bold">nuevas generaciones</span> con sello de
+            <span class="bold">excelencia</span> comprometidos con la <span class="highlight">transformación social</span>
+            de las regiones y un país en paz
+          </p>
+        </div>
+      </div>
+  
+      <!-- Logos de certificaciones -->
+      <div class="certifications">
+        <img src="/logo-acreditacion.png" alt="Certificación 1" class="cert-logo" />
+        <img src="/logo-equaa.png" alt="Certificación 2" class="cert-logo" />
+        <img src="/logo-sistemas.png" alt="Certificación 3" class="cert-logo" />
+        <img src="/logo-min.png" alt="Certificación 4" class="cert-logo" />
+      </div>
+    </div>
+  
+    <!-- Menú de navegación -->
+    <div class="nav-menu">
+      <div class="nav-container">
+        <ul class="nav-links">
+          <li><a href="/" class="nav-link">Inicio</a></li>
+          <li><a href="/proceso-graduacion" class="nav-link">Proceso de Graduación</a></li>
+          <li><a href="/preguntas-frecuentes" class="nav-link">Preguntas Frecuentes</a></li>
+          <li><a href="/contacto" class="nav-link">Contacto</a></li>
+        </ul>
+        <button class="search-btn" aria-label="Buscar">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.35-4.35"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+  
+  <style>
+    .navbar {
+      background: white;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+  
+    .navbar-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+  
+    .navbar-brand {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex: 1;
+    }
+  
+    .logo-container {
+      flex-shrink: 0;
+    }
+  
+    .university-logo {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+    }
+  
+    .brand-text {
+      flex: 1;
+    }
+  
+    .university-name {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #333;
+      margin: 0 0 8px 0;
+      line-height: 1.2;
+    }
+  
+    .highlight {
+      color: #d32f2f;
+    }
+  
+    .tagline {
+      font-size: 0.9rem;
+      color: #666;
+      margin: 0;
+      line-height: 1.4;
+      max-width: 500px;
+    }
+  
+    .bold {
+      font-weight: 600;
+      color: #333;
+    }
+  
+    .certifications {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      flex-shrink: 0;
+    }
+  
+    .cert-logo {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+    }
+  
+    .nav-menu {
+      background: #f5f5f5;
+      border-top: 1px solid #e0e0e0;
+    }
+  
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  
+    .nav-links {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      gap: 40px;
+    }
+  
+    .nav-link {
+      display: block;
+      padding: 15px 0;
+      color: #333;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+      border-bottom: 2px solid transparent;
+    }
+  
+    .nav-link:hover {
+      color: #d32f2f;
+      border-bottom-color: #d32f2f;
+    }
+  
+    .search-btn {
+      background: none;
+      border: none;
+      color: #666;
+      cursor: pointer;
+      padding: 8px;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+  
+    .search-btn:hover {
+      background-color: #e0e0e0;
+      color: #333;
+    }
+  
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .navbar-container {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+      }
+  
+      .navbar-brand {
+        flex-direction: column;
+        gap: 15px;
+      }
+  
+      .university-name {
+        font-size: 1.5rem;
+      }
+  
+      .tagline {
+        font-size: 0.8rem;
+      }
+  
+      .certifications {
+        gap: 10px;
+      }
+  
+      .cert-logo {
+        width: 45px;
+        height: 45px;
+      }
+  
+      .nav-links {
+        flex-direction: column;
+        gap: 0;
+        width: 100%;
+      }
+  
+      .nav-container {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+  
+    @media (max-width: 480px) {
+      .certifications {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+  
+      .nav-links {
+        gap: 0;
+      }
+  
+      .nav-link {
+        padding: 12px 0;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
