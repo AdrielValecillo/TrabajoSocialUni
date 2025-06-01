@@ -1,5 +1,12 @@
 ---
 // Navbar.astro
+const currentPath = Astro.url.pathname;
+const navItems = [
+  { path: '/', label: 'Inicio' },
+  { path: '/proceso-graduacion', label: 'Proceso de Graduación' },
+  { path: '/preguntas-frecuentes', label: 'Preguntas Frecuentes' },
+  { path: '/contacto', label: 'Contacto' }
+];
 ---
 
 <nav class="navbar">
@@ -7,7 +14,13 @@
       <!-- Logo y título principal -->
       <div class="navbar-brand">
         <div class="logo-container">
-          <img src="/logo-uni.png" alt="Logo Universidad de Pamplona" class="university-logo" />
+          <a href="https://www.unipamplona.edu.co" target="_blank" rel="noopener noreferrer">
+            <img 
+              src="/logo-uni.png" 
+              alt="Logo Universidad de Pamplona" 
+              class="university-logo" 
+            />
+          </a>
         </div>
         <div class="brand-text">
           <h1 class="university-name">
@@ -33,20 +46,43 @@
     <!-- Menú de navegación -->
     <div class="nav-menu">
       <div class="nav-container">
-        <ul class="nav-links">
-          <li><a href="/" class="nav-link">Inicio</a></li>
-          <li><a href="/proceso-graduacion" class="nav-link">Proceso de Graduación</a></li>
-          <li><a href="/preguntas-frecuentes" class="nav-link">Preguntas Frecuentes</a></li>
-          <li><a href="/contacto" class="nav-link">Contacto</a></li>
-        </ul>
-        <button class="search-btn" aria-label="Buscar">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="11" cy="11" r="8"></circle>
-            <path d="m21 21-4.35-4.35"></path>
-          </svg>
+        <!-- Botón del menú hamburguesa -->
+        <button class="menu-toggle" aria-label="Menú" aria-expanded="false">
+          <span class="menu-icon"></span>
         </button>
+        
+        <ul class="nav-links" id="main-nav">
+          {navItems.map(item => {
+            const isActive = currentPath === item.path || 
+                          (item.path !== '/' && currentPath.startsWith(item.path));
+            return (
+              <li>
+                <a 
+                  href={item.path} 
+                  class={`nav-link ${isActive ? 'active' : ''}`}
+                >
+                  {item.label}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
       </div>
     </div>
+
+    <!-- Script para el menú móvil -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        menuToggle?.addEventListener('click', () => {
+          const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+          menuToggle.setAttribute('aria-expanded', String(!isExpanded));
+          navLinks?.classList.toggle('active');
+        });
+      });
+    </script>
   </nav>
   
   <style>
@@ -147,6 +183,7 @@
       margin: 0;
       padding: 0;
       gap: 40px;
+      transition: transform 0.3s ease-in-out;
     }
   
     .nav-link {
@@ -155,13 +192,16 @@
       color: #333;
       text-decoration: none;
       font-weight: 500;
-      transition: color 0.3s ease;
+      transition: all 0.3s ease;
       border-bottom: 2px solid transparent;
+      margin: 0 15px;
     }
   
-    .nav-link:hover {
+    .nav-link:hover,
+    .nav-link.active {
       color: #d32f2f;
       border-bottom-color: #d32f2f;
+      font-weight: 600;
     }
   
     .search-btn {
@@ -179,8 +219,100 @@
       color: #333;
     }
   
+    /* Estilos del menú hamburguesa */
+    .menu-toggle {
+      display: none; /* Ocultar en desktop */
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 10px;
+      z-index: 1001;
+    }
+
+    .menu-icon {
+      display: block;
+      width: 25px;
+      height: 3px;
+      background-color: #333;
+      position: relative;
+      transition: background-color 0.3s ease;
+    }
+
+    .menu-icon::before,
+    .menu-icon::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 3px;
+      background-color: #333;
+      left: 0;
+      transition: transform 0.3s ease;
+    }
+
+    .menu-icon::before {
+      top: -8px;
+    }
+
+    .menu-icon::after {
+      bottom: -8px;
+    }
+
+    /* Estilos cuando el menú está abierto */
+    .menu-toggle[aria-expanded="true"] .menu-icon {
+      background-color: transparent;
+    }
+
+    .menu-toggle[aria-expanded="true"] .menu-icon::before {
+      transform: translateY(8px) rotate(45deg);
+    }
+
+    .menu-toggle[aria-expanded="true"] .menu-icon::after {
+      transform: translateY(-8px) rotate(-45deg);
+    }
+
     /* Responsive Design */
     @media (max-width: 768px) {
+      .menu-toggle {
+        display: block; /* Mostrar en móvil */
+      }
+
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 70%;
+        max-width: 300px;
+        background: white;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        padding: 80px 20px 20px;
+        transition: right 0.3s ease-in-out;
+      }
+
+      .nav-links.active {
+        right: 0;
+      }
+
+      .nav-links li {
+        width: 100%;
+        text-align: center;
+      }
+
+      .nav-link {
+        padding: 15px;
+        display: block;
+        width: 100%;
+        border-bottom: 1px solid #eee;
+      }
+
+      .nav-link.active {
+        border-bottom-color: #d32f2f;
+      }
       .navbar-container {
         flex-direction: column;
         gap: 15px;

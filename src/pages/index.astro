@@ -1,15 +1,241 @@
 ---
-import Navbar from '../components/Navbar.astro';
-
-import Footer from '../components/Footer.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import { ClientRouter } from "astro:transitions";
 ---
 
 <Layout>
-	<Navbar />
-	<h1>Grados Universitarios</h1>
-	<Footer />
+
+<section class="hero-section">
+	<ClientRouter></ClientRouter>
+  <div class="container">
+    <div class="hero-content">
+      <!-- Imagen de graduación -->
+      <div class="hero-image">
+        <img 
+          src="/etc/1.jpg" 
+          alt="Estudiantes graduados lanzando birretes al aire" 
+          class="graduation-image"
+        />
+      </div>
+
+      <!-- Contenido de texto -->
+      <div class="hero-text">
+        <h1 class="hero-title">
+          Orientación automatizada para tu Graduación
+        </h1>
+        
+        <div class="hero-description">
+          <p>
+            Este servicio ha sido diseñado por el programa de Ingeniería de 
+            Sistemas de la Universidad de Pamplona, con el objetivo de 
+            agilizar y mejorar el proceso de orientación estudiantil.
+          </p>
+          
+          <p>
+            El asistente puede responder preguntas sobre requisitos de 
+            grado, trámites, formatos y más. Todo basado en información 
+            oficial y actualizada.
+          </p>
+          
+          <p>
+            Nuestro compromiso es ofrecer una experiencia ágil y confiable 
+            para que avances con seguridad hacia tu graduación.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function openChatbot() {
+    // Aquí puedes agregar la lógica para abrir el chatbot
+    console.log('Abriendo chatbot...');
+    // Ejemplo: window.open('/chatbot', '_blank');
+    // O mostrar un modal, etc.
+  }
+</script>
+
+<style>
+  .hero-section {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 60px 0;
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .hero-image {
+    position: relative;
+  }
+
+  .graduation-image {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    object-fit: cover;
+  }
+
+  .hero-text {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #2c3e50;
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  .hero-description {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .hero-description p {
+    font-size: 1.1rem;
+    color: #5a6c7d;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .chatbot-section {
+    margin-top: 20px;
+  }
+
+  .chatbot-button {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    border: none;
+    padding: 16px 24px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+  }
+
+  .chatbot-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+    background: linear-gradient(135deg, #2980b9, #1f5f8b);
+  }
+
+  .button-text {
+    flex: 1;
+  }
+
+  .arrow-icon {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+  }
+
+  .chatbot-button:hover .arrow-icon {
+    transform: translateX(4px);
+  }
+
+  .chatbot-icon {
+    width: 32px;
+    height: 32px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+  }
+
+  .chatbot-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 968px) {
+    .hero-content {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      text-align: center;
+    }
+
+    .hero-title {
+      font-size: 2.2rem;
+    }
+
+    .hero-description p {
+      font-size: 1rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero-section {
+      padding: 40px 0;
+      min-height: auto;
+    }
+
+    .hero-content {
+      gap: 30px;
+    }
+
+    .hero-title {
+      font-size: 1.8rem;
+    }
+
+    .hero-description p {
+      font-size: 0.95rem;
+    }
+
+    .chatbot-button {
+      padding: 14px 20px;
+      font-size: 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .container {
+      padding: 0 15px;
+    }
+
+    .hero-title {
+      font-size: 1.6rem;
+    }
+
+    .hero-description p {
+      font-size: 0.9rem;
+    }
+
+    .chatbot-button {
+      padding: 12px 18px;
+      font-size: 0.95rem;
+    }
+
+    .chatbot-icon {
+      width: 28px;
+      height: 28px;
+    }
+  }
+</style>
 </Layout>
