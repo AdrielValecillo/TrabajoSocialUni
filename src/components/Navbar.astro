@@ -46,12 +46,7 @@ const navItems = [
     <!-- Menú de navegación -->
     <div class="nav-menu">
       <div class="nav-container">
-        <!-- Botón del menú hamburguesa -->
-        <button class="menu-toggle" aria-label="Menú" aria-expanded="false">
-          <span class="menu-icon"></span>
-        </button>
-        
-        <ul class="nav-links" id="main-nav">
+        <ul class="nav-links">
           {navItems.map(item => {
             const isActive = currentPath === item.path || 
                           (item.path !== '/' && currentPath.startsWith(item.path));
@@ -69,20 +64,6 @@ const navItems = [
         </ul>
       </div>
     </div>
-
-    <!-- Script para el menú móvil -->
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        const menuToggle = document.querySelector('.menu-toggle');
-        const navLinks = document.querySelector('.nav-links');
-        
-        menuToggle?.addEventListener('click', () => {
-          const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-          menuToggle.setAttribute('aria-expanded', String(!isExpanded));
-          navLinks?.classList.toggle('active');
-        });
-      });
-    </script>
   </nav>
   
   <style>
@@ -219,99 +200,73 @@ const navItems = [
       color: #333;
     }
   
-    /* Estilos del menú hamburguesa */
-    .menu-toggle {
-      display: none; /* Ocultar en desktop */
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 10px;
-      z-index: 1001;
+    /* Estilos del menú de navegación */
+    .nav-menu {
+      background-color: #f8f9fa;
+      padding: 0.5rem 0;
     }
-
-    .menu-icon {
-      display: block;
-      width: 25px;
-      height: 3px;
-      background-color: #333;
+    
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    .nav-links {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      gap: 2rem;
+    }
+    
+    .nav-link {
+      color: #333;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.5rem 0;
       position: relative;
-      transition: background-color 0.3s ease;
+      transition: color 0.3s ease;
     }
-
-    .menu-icon::before,
-    .menu-icon::after {
+    
+    .nav-link:hover {
+      color: #d32f2f;
+    }
+    
+    .nav-link.active {
+      color: #d32f2f;
+      font-weight: 600;
+    }
+    
+    .nav-link.active::after {
       content: '';
       position: absolute;
-      width: 100%;
-      height: 3px;
-      background-color: #333;
+      bottom: 0;
       left: 0;
-      transition: transform 0.3s ease;
+      width: 100%;
+      height: 2px;
+      background-color: #d32f2f;
     }
-
-    .menu-icon::before {
-      top: -8px;
-    }
-
-    .menu-icon::after {
-      bottom: -8px;
-    }
-
-    /* Estilos cuando el menú está abierto */
-    .menu-toggle[aria-expanded="true"] .menu-icon {
-      background-color: transparent;
-    }
-
-    .menu-toggle[aria-expanded="true"] .menu-icon::before {
-      transform: translateY(8px) rotate(45deg);
-    }
-
-    .menu-toggle[aria-expanded="true"] .menu-icon::after {
-      transform: translateY(-8px) rotate(-45deg);
-    }
-
+    
     /* Responsive Design */
     @media (max-width: 768px) {
-      .menu-toggle {
-        display: block; /* Mostrar en móvil */
+      .certifications {
+        display: none;
       }
-
+      
       .nav-links {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        height: 100vh;
-        width: 70%;
-        max-width: 300px;
-        background: white;
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 30px;
-        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-        z-index: 1000;
-        padding: 80px 20px 20px;
-        transition: right 0.3s ease-in-out;
+        gap: 1rem;
+        padding: 1rem 0;
       }
-
-      .nav-links.active {
-        right: 0;
-      }
-
-      .nav-links li {
-        width: 100%;
-        text-align: center;
-      }
-
+      
       .nav-link {
-        padding: 15px;
-        display: block;
-        width: 100%;
-        border-bottom: 1px solid #eee;
+        padding: 0.75rem 1rem;
       }
-
-      .nav-link.active {
-        border-bottom-color: #d32f2f;
+      
+      .nav-link.active::after {
+        display: none;
       }
       .navbar-container {
         flex-direction: column;
