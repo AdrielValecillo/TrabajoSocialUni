@@ -1,10 +1,529 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { ClientRouter } from "astro:transitions";
+import { ClientRouter } from 'astro:transitions';
 ---
 
-<Layout>
-    <ClientRouter></ClientRouter>
-    <h1>Proceso de Graduación</h1>
-    
+<Layout title="Proceso de Graduación - Universidad de Pamplona">
+  <ClientRouter />
+  
+  <!-- Hero Section -->
+  <section class="hero-graduation">
+    <div class="hero-overlay">
+      <div class="container">
+        <div class="hero-content">
+          <h1 class="hero-title">
+            "Proceso de Graduación en<br>
+            Ingeniería de Sistemas"
+          </h1>
+          <p class="hero-subtitle">
+            Todo lo que necesitas saber para culminar tus estudios.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Content Section -->
+  <section class="content-section">
+    <div class="container">
+      
+      <!-- Simple Tabs Navigation -->
+      <div class="simple-tabs">
+        <button class="simple-tab active" data-tab="trabajo-grado">
+          Trabajo de Grado (Investigación)
+        </button>
+        <button class="simple-tab" data-tab="practicas-empresariales">
+          Prácticas Empresariales
+        </button>
+        <button class="simple-tab" data-tab="tramites-finales">
+          Trámites Finales
+        </button>
+      </div>
+
+      <!-- Tab Content -->
+      <div class="tab-content-wrapper">
+        
+        <!-- Trabajo de Grado -->
+        <div class="tab-content active" id="trabajo-grado" transition:name="tab-content">
+          <div class="content-layout">
+            <div class="content-image">
+              <img src="/proceso/1.jpg" alt="Estudiantes graduándose" class="main-image" />
+            </div>
+            <div class="content-text">
+              <h2 class="content-title">Trabajo de Grado (Investigación)</h2>
+              <p>
+                Para optar al título de Ingeniero de Sistemas, los estudiantes deben desarrollar un trabajo de grado que demuestre 
+                sus competencias académicas y profesionales.
+              </p>
+              <p>
+                Este proceso consta de varias etapas clave que garantizan la calidad y originalidad de la 
+                investigación o desarrollo tecnológico presentado.
+              </p>
+            </div>
+          </div>
+
+          <div class="content-details">
+            <h3>Requisitos Detallados:</h3>
+            <ul>
+              <li>
+                <strong>Créditos Académicos:</strong> Es necesario haber aprobado un mínimo de 150 créditos del plan de estudios, lo que asegura que el 
+                estudiante cuente con conocimientos sólidos para abordar su proyecto final.
+              </li>
+              <li>
+                <strong>Propuesta Aprobada:</strong> El estudiante debe presentar una propuesta detallada ante un director asignado, quien evaluará la viabilidad 
+                y relevancia del tema propuesto. La aprobación de esta propuesta es un paso esencial para iniciar el desarrollo del trabajo.
+              </li>
+              <li>
+                <strong>Normas APA:</strong> Todos los documentos entregados deben seguir el formato APA (7ª edición), incluyendo citaciones, referencias y 
+                estructura del documento para garantizar uniformidad y profesionalismo en la presentación.
+              </li>
+            </ul>
+
+            <h3>Documentos y Recursos:</h3>
+            <ul>
+              <li>
+                <strong>Formato de Propuesta:</strong> Los estudiantes pueden descargar el formato oficial de propuesta de trabajo de grado en PDF, el cual 
+                incluye las secciones requeridas y las instrucciones para su diligenciamiento.
+              </li>
+              <li>
+                <strong>Calendario de Sustentaciones:</strong> Es fundamental consultar las fechas establecidas para las sustentaciones, las cuales se publican 
+                semestralmente en el calendario académico de la facultad.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Prácticas Empresariales -->
+        <div class="tab-content" id="practicas-empresariales" transition:name="tab-content">
+          <div class="content-layout">
+            <div class="content-image">
+              <img src="/proceso/2.png" alt="Estudiantes en prácticas empresariales" class="main-image" />
+            </div>
+            <div class="content-text">
+              <h2 class="content-title">Prácticas Empresariales</h2>
+              <p>
+                Las prácticas empresariales son un componente esencial del plan de estudios, diseñado 
+                para que los estudiantes apliquen sus conocimientos en un entorno laboral real. 
+              </p>
+              <p>
+                Esta experiencia no solo fortalece sus habilidades técnicas, sino que también les permite construir una red profesional valiosa.
+              </p>
+            </div>
+          </div>
+
+          <div class="content-details">
+            <h3>Requisitos Detallados:</h3>
+            <ul>
+              <li>
+                <strong>Créditos Aprobados:</strong> Los estudiantes deben haber cursado y aprobado al menos el 70% de los créditos 
+                totales del programa para poder inscribirse en 
+                las prácticas. Este requisito asegura que cuenten con 
+                las bases necesarias para desempeñarse eficazmente en la empresa.
+              </li>
+              <li>
+                <strong>Convenio Institucional:</strong> Es indispensable que la empresa donde se realicen las prácticas 
+                tenga un convenio vigente con la Universidad de 
+                Pamplona. Este acuerdo garantiza que las actividades realizadas 
+                cumplan con los objetivos académicos del programa.
+              </li>
+            </ul>
+
+            <h3>Proceso Paso a Paso:</h3>
+            <ul>
+              <li>
+                <strong>1. Inscripción:</strong> El estudiante debe registrar su intención de realizar prácticas a 
+                través de la plataforma institucional, adjuntando los documentos requeridos.
+              </li>
+              <li>
+                <strong>2. Informes:</strong> Durante la práctica, se deben entregar informes periódicos que 
+                detallen las actividades realizadas y los aprendizajes obtenidos. 
+                Estos documentos serán evaluados por un tutor asignado.
+              </li>
+              <li>
+                <strong>3. Evaluación Final:</strong> Al concluir las prácticas, tanto el estudiante como la 
+                empresa emiten una evaluación mutua, la cual forma parte del proceso de calificación
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Trámites Finales -->
+        <div class="tab-content" id="tramites-finales" transition:name="tab-content">
+          <div class="content-layout">
+            <div class="content-image">
+              <img src="/proceso/3.png" alt="Trámites de graduación" class="main-image" />
+            </div>
+            <div class="content-text">
+              <h2 class="content-title">Trámites Finales</h2>
+              <p>
+                Una vez cumplidos los requisitos académicos, los estudiantes deben completar una serie de 
+                trámites administrativos para formalizar su graduación. 
+              </p>
+              <p>
+                Estos procedimientos son esenciales para garantizar que todo el proceso se 
+                lleve a cabo conforme a las normativas institucionales.
+              </p>
+            </div>
+          </div>
+
+          <div class="content-details">
+            <h3>Checklist de Trámites:</h3>
+            <ul>
+              <li>
+                <strong>Paz y Salvo Bibliotecario:</strong> Los estudiantes deben obtener un certificado que acredite que no 
+                tienen pendientes con la biblioteca universitaria, ya sea por préstamos de libros o multas pendientes
+              </li>
+              <li>
+                <strong>Pago de Derechos de Grado::</strong> Es necesario cancelar los derechos de grado establecidos por la universidad, 
+                los cuales cubren los costos administrativos y de ceremonia. Este pago debe realizarse 
+                dentro de los plazos indicados para evitar retrasos en el proceso.
+              </li>
+            </ul>
+
+            <h3>Contacto y Asesoría:</h3>
+            <ul>
+              <li>
+                Para cualquier duda o inconveniente relacionado con estos trámites, 
+                los estudiantes pueden comunicarse con la oficina 
+                de graduaciones a través del correo electrónico 
+                <a href="mailto:grado.ingenieria@unipamplona.edu.co">grado.ingenieria@unipamplona.edu.co</a>. 
+              </li>
+              <li>
+                Además, el chatbot institucional está disponible para brindar asistencia inmediata y guiar a los estudiantes en cada paso del proceso.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
 </Layout>
+
+<script is:inline>
+  let isTransitioning = false;
+
+  function initSmoothTabs() {
+    const tabButtons = document.querySelectorAll('.simple-tab');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabButtons.forEach(button => {
+      button.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        if (isTransitioning) return; // Prevenir clicks múltiples
+        
+        const targetTab = button.getAttribute('data-tab');
+        const currentActive = document.querySelector('.tab-content.active');
+        const targetContent = document.getElementById(targetTab);
+        
+        if (!targetContent || targetContent === currentActive) return;
+        
+        isTransitioning = true;
+        
+        // Update tab buttons
+        tabButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        
+        // Smooth transition between contents
+        currentActive.style.opacity = '0';
+        currentActive.style.transform = 'translateY(20px)';
+        
+        setTimeout(() => {
+          // Hide current content
+          tabContents.forEach(content => content.classList.remove('active'));
+          
+          // Show target content
+          targetContent.classList.add('active');
+          targetContent.style.opacity = '0';
+          targetContent.style.transform = 'translateY(20px)';
+          
+          // Animate in
+          requestAnimationFrame(() => {
+            targetContent.style.opacity = '1';
+            targetContent.style.transform = 'translateY(0)';
+            
+            setTimeout(() => {
+              isTransitioning = false;
+            }, 300);
+          });
+        }, 150);
+      });
+    });
+  }
+
+  // Initialize on page load
+  document.addEventListener('DOMContentLoaded', initSmoothTabs);
+  
+  // Re-initialize after Astro view transitions
+  document.addEventListener('astro:page-load', initSmoothTabs);
+</script>
+
+<style>
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  .hero-graduation {
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.4);  /* Fondo oscuro semitransparente si es necesario */
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(255, 255, 255);
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;  /* Suaviza la transición */
+}
+
+.hero-graduation::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('/fondopagina.avif');
+  background-size: cover;
+  background-position: center;
+  filter: blur(1px); /* Aplica el blur inicial */
+  z-index: -1; /* Asegura que la imagen esté debajo del contenido */
+  transition: filter 0.3s ease-in-out; /* Suaviza el cambio del blur */
+}
+
+/* Efecto hover: aumenta el blur cuando pasas el mouse */
+.hero-graduation:hover::before {
+  filter: blur(10px); /* Aumenta el blur a 10px cuando pasa el mouse */
+}
+
+.hero-content {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  z-index: 1;  /* El texto se mantiene encima del fondo */
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  line-height: 1.2;
+  text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7); /* Sombra del texto */
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  margin: 0;
+  text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7); /* Sombra del texto */
+}
+
+
+
+  /* Content Section */
+  .content-section {
+    padding: 40px 0 60px;
+    background: white;
+  }
+
+  /* Simple Tabs */
+  .simple-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .simple-tab {
+    background: none;
+    border: none;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #666;
+    cursor: pointer;
+    padding: 8px 0;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .simple-tab:hover {
+    color: #d32f2f;
+  }
+
+  .simple-tab.active {
+    color: #d32f2f;
+    font-weight: 600;
+  }
+
+  .simple-tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #d32f2f;
+    transition: bottom 0.2s, height 0.2s;
+  }
+
+  /* Tab Content */
+  .tab-content-wrapper {
+    position: relative;
+    min-height: 600px; /* Prevenir saltos de layout */
+  }
+
+  .tab-content {
+    display: none;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .tab-content.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Content Layout */
+  .content-layout {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 40px;
+    align-items: start;
+    margin-bottom: 40px;
+  }
+
+  .content-image {
+    position: sticky;
+    top: 20px;
+  }
+
+  .main-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+  }
+
+  .content-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 20px;
+    margin-top: 0;
+  }
+
+  .content-text p {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+
+  /* Content Details */
+  .content-details {
+    max-width: none;
+  }
+
+  .content-details h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #333;
+    margin: 30px 0 15px 0;
+  }
+
+  .content-details ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 30px 0;
+  }
+
+  .content-details li {
+    padding: 12px 0;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #555;
+    border-bottom: 1px solid #f5f5f5;
+  }
+
+  .content-details li:last-child {
+    border-bottom: none;
+  }
+
+  .content-details strong {
+    color: #d32f2f;
+    font-weight: 600;
+  }
+
+  /* Smooth transitions for view transitions */
+  @view-transition {
+    navigation: auto;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 2rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+    }
+
+    .simple-tabs {
+      flex-direction: column;
+      gap: 20px;
+      text-align: center;
+    }
+
+    .content-layout {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+
+    .content-image {
+      position: static;
+    }
+
+    .content-title {
+      font-size: 2rem;
+    }
+
+    .tab-content-wrapper {
+      min-height: auto;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .content-section {
+      padding: 30px 0 40px;
+    }
+
+    .simple-tabs {
+      gap: 10px;
+    }
+
+    .simple-tab {
+      font-size: 0.9rem;
+    }
+
+    .simple-tab.active::after {
+      bottom: -6px;
+      height: 2px;
+    }
+
+    .content-title {
+      font-size: 1.8rem;
+    }
+
+    .content-text p {
+      font-size: 1rem;
+    }
+  }
+</style>
