@@ -86,7 +86,7 @@ export default function FloatingChat() {
   return (
     <>
       {/* Contenedor principal del chatbot */}
-      <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 flex flex-col items-end" style={{ zIndex: 999999 }}>
+      <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 flex flex-col items-end" >
         {/* Chat window */}
         <div
           className={`mb-4 w-[320px] sm:w-[350px] max-w-[calc(100vw-2rem)] rounded-lg bg-white shadow-2xl transition-all duration-300 ease-in-out ${
