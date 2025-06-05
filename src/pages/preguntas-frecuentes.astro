@@ -4,7 +4,86 @@ import { ClientRouter } from "astro:transitions";
 ---
 
 <Layout>
-    <ClientRouter></ClientRouter>
-    <h1>Preguntas Frecuentes</h1>
+    <ClientRouter />
+        
+        <!-- Hero Section -->
+        <section class="hero-graduation">
+          <div class="hero-overlay">
+            <div class="container">
+              <div class="hero-content">
+                <h1 class="hero-title">
+                  Preguntas Frecuentes<br>
+                  Sobre el Proceso de Graduación
+                </h1>
+                <p class="hero-subtitle">
+                    Encuentra respuestas rápidas o pregunta al chatbot si no ves tu duda aquí.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
     
 </Layout>
+
+
+<style>
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    .hero-graduation {
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.4);  /* Fondo oscuro semitransparente si es necesario */
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(255, 255, 255);
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;  /* Suaviza la transición */
+  }
+  
+  .hero-graduation::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('/fondopagina.avif');
+    background-size: cover;
+    background-position: center;
+    filter: blur(1px); /* Aplica el blur inicial */
+    z-index: -1; /* Asegura que la imagen esté debajo del contenido */
+    transition: filter 0.3s ease-in-out; /* Suaviza el cambio del blur */
+  }
+  
+  /* Efecto hover: aumenta el blur cuando pasas el mouse */
+  .hero-graduation:hover::before {
+    filter: blur(10px); /* Aumenta el blur a 10px cuando pasa el mouse */
+  }
+  
+  .hero-content {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    z-index: 1;  /* El texto se mantiene encima del fondo */
+  }
+  
+  .hero-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.2;
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7); /* Sombra del texto */
+  }
+  
+  .hero-subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    margin: 0;
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7); /* Sombra del texto */
+  }
+  
+  </style>
