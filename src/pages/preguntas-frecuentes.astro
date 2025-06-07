@@ -22,68 +22,576 @@ import { ClientRouter } from "astro:transitions";
             </div>
           </div>
         </section>
-    
+
+          
+  <!-- Main Content -->
+  <section class="faq-section">
+    <div class="container">
+      <!-- Trabajo de Grado -->
+      <div class="faq-category">
+        <div class="category-header">
+          <div class="category-image">
+            <img src="/proceso/4.png" alt="Estudiantes graduándose" class="category-img" />
+          </div>
+          <div class="category-content">
+            <h2 class="category-title">Trabajo de Grado (Investigación)</h2>
+            <p class="category-description">
+              El Trabajo de Grado es el proyecto final que demuestra 
+              tus competencias como futuro Ingeniero de Sistemas.
+            </p>
+            <p class="category-description">
+              Aquí encontrarás dudas sobre requisitos, formatos, 
+              sustentación y evaluación.
+            </p>
+          </div>
+        </div>
+        
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFAQ(this)">
+              <span>1. ¿Cuántos créditos necesito para hacer mi trabajo de grado?</span>
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6,9 12,15 18,9"></polyline>
+              </svg>
+            </button>
+            <div class="faq-answer">
+              <p>Debes tener aprobado un mínimo de 150 créditos del plan de estudios. Verifica tu historial académico en el Portal de Estudiantes.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFAQ(this)">
+              <span>2. ¿Cómo elijo el director de tesis?</span>
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6,9 12,15 18,9"></polyline>
+              </svg>
+            </button>
+            <div class="faq-answer">
+              <ul>
+                <li>Revisa la lista de profesores disponibles en <a href="#" class="link">lista digital</a></li>
+                <li>Contacta directamente por correo electrónico y presenta tu propuesta</li>
+                <li>El director debe ser certificado por el Comité de Grados</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFAQ(this)">
+              <span>3. ¿Qué normas de formato debo seguir?</span>
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6,9 12,15 18,9"></polyline>
+              </svg>
+            </button>
+            <div class="faq-answer">
+              <p>Respuesta: Usa las Normas APA en su última versión. Descarga la plantilla oficial <a href="#" class="link">aquí</a>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Prácticas Empresariales -->
+      <div class="faq-category">
+        <div class="category-header">
+          <div class="category-image">
+            <img src="/proceso/4.png" alt="Reunión empresarial" class="category-img" />
+          </div>
+          <div class="category-content">
+            <h2 class="category-title">Prácticas Empresariales</h2>
+            <p class="category-description">
+              Las prácticas empresariales te permiten aplicar tus conocimientos en el 
+              sector empresarial. Información sobre convenios, 
+              duración, informes y cómo validar esta experiencia en tu 
+              proceso de graduación.
+            </p>
+          </div>
+        </div>
+        
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFAQ(this)">
+              <span>1. ¿Debo buscar una empresa que tenga convenio con la universidad?</span>
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6,9 12,15 18,9"></polyline>
+              </svg>
+            </button>
+            <div class="faq-answer">
+              <p>Respuesta: No, el convenio es simplemnente una carta de presentación entre la empresa y la universidad.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFAQ(this)">
+              <span>2. ¿Cuánto dura el proceso de prácticas?</span>
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6,9 12,15 18,9"></polyline>
+              </svg>
+            </button>
+            <div class="faq-answer">
+              <p>Respuesta: Mínimo 4 meses y máximo 6 meses, con dedicación de 8 horas semanales.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFAQ(this)">
+              <span>3. ¿Puedo hacer las prácticas en la empresa donde trabajo?</span>
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6,9 12,15 18,9"></polyline>
+              </svg>
+            </button>
+            <div class="faq-answer">
+              <p>Respuesta: Si, puedes hacer las prácticas en la empresa donde trabajas mientras 
+                cumpla con los requisitos establecidos y tus funciones sean relacionadas a la carrera.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Trámites Finales -->
+      <div class="faq-category">
+        <div class="category-header">
+          <div class="category-image">
+            <img src="/proceso/4.png" alt="Grupo de estudiantes" class="category-img" />
+          </div>
+          <div class="category-content">
+            <h2 class="category-title">Trámites Finales</h2>
+            <p class="category-description">
+              Una vez completado tu trabajo de grado, es hora de hacer los 
+              trámites correspondientes: documentos requeridos, pagos, plazos y 
+              cómo asegurarte de que todo esté en orden antes de tu 
+              ceremonia de graduación.
+            </p>
+            <p class="category-description">
+              Desde cómo preparar tu defensa hasta las decisiones de la 
+              ceremonia de grado. Todo lo que necesitas saber para 
+              cerrar con éxito tu etapa universitaria.
+            </p>
+          </div>
+        </div>
+        
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFAQ(this)">
+              <span>1. ¿Dónde pago los derechos de grado?</span>
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6,9 12,15 18,9"></polyline>
+              </svg>
+            </button>
+            <div class="faq-answer">
+              <p>Respuesta: En la oficina de Tesorería Administrativa que se encuentra Piso uno sede.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFAQ(this)">
+              <span>2. ¿Qué documentos debo entregar finalmente?</span>
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6,9 12,15 18,9"></polyline>
+              </svg>
+            </button>
+            <div class="faq-answer">
+              <ul>
+                <li>3 copias en pasta dura de tu trabajo de grado</li>
+                <li>Paz y salvo financiero Sistemas y Tesorería</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFAQ(this)">
+              <span>3. ¿Puedo sustentar virtualmente?</span>
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6,9 12,15 18,9"></polyline>
+              </svg>
+            </button>
+            <div class="faq-answer">
+              <p>Respuesta: Sí, se debe enviar solicitud y evidencia de la necesidad. Solo se examina con un día de anticipación.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFAQ(this)">
+              <span>4. ¿Cómo me inscribo a la ceremonia de grado?</span>
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6,9 12,15 18,9"></polyline>
+              </svg>
+            </button>
+            <div class="faq-answer">
+              <p>Respuesta: Completa el formulario que se publica 3 meses antes del evento en el <a href="#" class="link">Portal de Graduandos</a>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
 </Layout>
+
+<script is:inline>
+  function toggleFAQ(button) {
+    const faqItem = button.parentElement;
+    const answer = faqItem.querySelector('.faq-answer');
+    const icon = button.querySelector('.faq-icon');
+    const isOpen = faqItem.classList.contains('active');
+    
+    if (isOpen) {
+      // Close
+      faqItem.classList.remove('active');
+      answer.style.maxHeight = '0';
+      icon.style.transform = 'rotate(0deg)';
+    } else {
+      // Close all other FAQs in the same category
+      const category = faqItem.closest('.faq-category');
+      const otherItems = category.querySelectorAll('.faq-item.active');
+      otherItems.forEach(item => {
+        item.classList.remove('active');
+        item.querySelector('.faq-answer').style.maxHeight = '0';
+        item.querySelector('.faq-icon').style.transform = 'rotate(0deg)';
+      });
+      
+      // Open this one
+      faqItem.classList.add('active');
+      answer.style.maxHeight = answer.scrollHeight + 'px';
+      icon.style.transform = 'rotate(180deg)';
+    }
+  }
+
+  // Initialize on page load
+  document.addEventListener('DOMContentLoaded', function() {
+    // Set initial state for all answers
+    const answers = document.querySelectorAll('.faq-answer');
+    answers.forEach(answer => {
+      answer.style.maxHeight = '0';
+    });
+  });
+
+  // Re-initialize after Astro view transitions
+  document.addEventListener('astro:page-load', function() {
+    const answers = document.querySelectorAll('.faq-answer');
+    answers.forEach(answer => {
+      answer.style.maxHeight = '0';
+    });
+  });
+</script>
+    
+
 
 
 <style>
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  .hero-graduation {
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.4);  /* Fondo oscuro semitransparente si es necesario */
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(255, 255, 255);
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;  /* Suaviza la transición */
+}
+
+.hero-graduation::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('/fondopagina.avif');
+  background-size: cover;
+  background-position: center;
+  filter: blur(1px); /* Aplica el blur inicial */
+  z-index: -1; /* Asegura que la imagen esté debajo del contenido */
+  transition: filter 0.3s ease-in-out; /* Suaviza el cambio del blur */
+}
+
+/* Efecto hover: aumenta el blur cuando pasas el mouse */
+.hero-graduation:hover::before {
+  filter: blur(10px); /* Aumenta el blur a 10px cuando pasa el mouse */
+}
+
+.hero-content {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  z-index: 1;  /* El texto se mantiene encima del fondo */
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  line-height: 1.2;
+  text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7); /* Sombra del texto */
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  margin: 0;
+  text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7); /* Sombra del texto */
+}
+
+
+
+  /* Smooth transitions for view transitions */
+  @view-transition {
+    navigation: auto;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 2rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .content-section {
+      padding: 30px 0 40px;
+    }
+
+    .simple-tabs {
+      gap: 10px;
+    }
+
+    .simple-tab {
+      font-size: 0.9rem;
+    }
+
+    .simple-tab.active::after {
+      bottom: -6px;
+      height: 2px;
+    }
+
+    .content-title {
+      font-size: 1.8rem;
+    }
+
+    .content-text p {
+      font-size: 1rem;
+    }
+  }
+
+  
+  .faq-section {
+    padding: 40px 0 60px;
+    background: #f8f9fa;
+  }
+
+  .page-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 50px;
+  }
+
+  /* Category Sections */
+  .faq-category {
+    background: white;
+    border-radius: 12px;
+    margin-bottom: 40px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .category-header {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 30px;
+    padding: 30px;
+    align-items: center;
+  }
+
+  .category-image {
+    position: relative;
+  }
+
+  .category-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  .category-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 15px;
+  }
+
+  .category-description {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+
+  .category-description:last-child {
+    margin-bottom: 0;
+  }
+
+  /* FAQ Items */
+  .faq-list {
+    border-top: 1px solid #f0f0f0;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .faq-question {
+    width: 100%;
+    padding: 20px 30px;
+    background: none;
+    border: none;
+    text-align: left;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #333;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+  }
+
+  .faq-question:hover {
+    background-color: #f8f9fa;
+    color: #d32f2f;
+  }
+
+  .faq-question span {
+    flex: 1;
+    text-align: left;
+  }
+
+  .faq-icon {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+    margin-left: 15px;
+  }
+
+  .faq-answer {
+    padding: 0 30px;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    background-color: #fafafa;
+  }
+
+  .faq-answer p,
+  .faq-answer ul {
+    padding: 20px 0;
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #555;
+  }
+
+  .faq-answer ul {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .faq-answer li {
+    padding: 5px 0;
+    position: relative;
+    padding-left: 20px;
+  }
+
+  .faq-answer li::before {
+    content: '•';
+    color: #d32f2f;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+  }
+
+  .link {
+    color: #d32f2f;
+    text-decoration: underline;
+    transition: opacity 0.3s ease;
+  }
+
+  .link:hover {
+    opacity: 0.8;
+  }
+
+  /* Active state */
+  .faq-item.active .faq-question {
+    background-color: #f8f9fa;
+    color: #d32f2f;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .page-title {
+      font-size: 2rem;
+    }
+
+    .category-header {
+      grid-template-columns: 1fr;
+      gap: 20px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .category-title {
+      font-size: 1.5rem;
+    }
+
+    .faq-question {
+      padding: 15px 20px;
+      font-size: 0.95rem;
+    }
+
+    .faq-answer {
       padding: 0 20px;
     }
-    .hero-graduation {
-    position: relative;
-    background-color: rgba(0, 0, 0, 0.4);  /* Fondo oscuro semitransparente si es necesario */
-    min-height: 400px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: rgb(255, 255, 255);
-    overflow: hidden;
-    transition: all 0.3s ease-in-out;  /* Suaviza la transición */
   }
-  
-  .hero-graduation::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url('/fondopagina.avif');
-    background-size: cover;
-    background-position: center;
-    filter: blur(1px); /* Aplica el blur inicial */
-    z-index: -1; /* Asegura que la imagen esté debajo del contenido */
-    transition: filter 0.3s ease-in-out; /* Suaviza el cambio del blur */
+
+  @media (max-width: 480px) {
+    .faq-section {
+      padding: 30px 0 40px;
+    }
+
+    .page-title {
+      font-size: 1.8rem;
+      margin-bottom: 30px;
+    }
+
+    .category-header {
+      padding: 15px;
+    }
+
+    .category-title {
+      font-size: 1.3rem;
+    }
+
+    .category-description {
+      font-size: 0.9rem;
+    }
+
+    .faq-question {
+      padding: 12px 15px;
+      font-size: 0.9rem;
+    }
+
+    .faq-answer {
+      padding: 0 15px;
+    }
   }
-  
-  /* Efecto hover: aumenta el blur cuando pasas el mouse */
-  .hero-graduation:hover::before {
-    filter: blur(10px); /* Aumenta el blur a 10px cuando pasa el mouse */
-  }
-  
-  .hero-content {
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto;
-    z-index: 1;  /* El texto se mantiene encima del fondo */
-  }
-  
-  .hero-title {
-    font-size: 3rem;
-    font-weight: 700;
-    margin-bottom: 20px;
-    line-height: 1.2;
-    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7); /* Sombra del texto */
-  }
-  
-  .hero-subtitle {
-    font-size: 1.2rem;
-    opacity: 0.9;
-    margin: 0;
-    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7); /* Sombra del texto */
-  }
-  
-  </style>
+</style>
