@@ -1,10 +1,442 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { ClientRouter } from "astro:transitions";
+import { ClientRouter } from 'astro:transitions';
 ---
 
-<Layout>
-    <ClientRouter></ClientRouter>
-    <h1>Contacto</h1>
-    
+<Layout title="Contactos y Documentos - Universidad de Pamplona">
+<ClientRouter />
+
+<main class="main-content">
+  <div class="container">
+    <!-- Comités de trabajo de grado -->
+    <section class="section">
+      <h2 class="section-title">Comités de trabajo de grado</h2>
+      
+      <div class="committees-grid">
+        <div class="committee-column">
+          <h3>Pamplona</h3>
+          <div class="member">
+            • <strong>José Liviston Mendoza Bejarano</strong> - Director de programa
+          </div>
+          <div class="member">
+            • <strong>Victor Garrido</strong> - Director de Departamento EEST
+          </div>
+          <div class="member">
+            • <strong>Ailin Orjuela Duarte</strong> - Docente
+          </div>
+          <div class="contact-info">
+            <p>Contacto: <a href="mailto:ctg.sistemas.pamplona@unipamplona.edu.co">ctg.sistemas.pamplona@unipamplona.edu.co</a></p>
+          </div>
+        </div>
+
+        <div class="committee-column">
+          <h3>Villa del Rosario</h3>
+          <div class="member">
+            • <strong>Johan Leonardo Latorre</strong> - Coordinador de Programa
+          </div>
+          <div class="member">
+            • <strong>Sandra Maigualida Aranguren Zambrano</strong> - Coordinadora de trabajos de grado
+          </div>
+          <div class="member">
+            • <strong>Jesús Enrique Duran Villamizar</strong> - Docente
+          </div>
+          <div class="contact-info">
+            <p>Contacto: <a href="mailto:ctg.sistemas.villa@unipamplona.edu.co">ctg.sistemas.villa@unipamplona.edu.co</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Documentos relacionados -->
+    <section class="section">
+      <h2 class="section-title">Documentos relacionados</h2>
+      
+      <div class="documents-list">
+        <div class="document-item">
+          <span>• Formato - Modelo de anteproyecto para trabajo de grado </span>
+          <a href="https://www.unipamplona.edu.co/unipamplona/portalIG/home_77/recursos/documentos/12092017/anteproyecto.doc" 
+          target="_blank"
+          class="download-link">[Descargar]
+          </a>
+        </div>
+        
+        <div class="document-item">
+          <span>• Formato - Modelo de acta sustentación de anteproyecto para trabajo de grado </span>
+          <a href="https://www.unipamplona.edu.co/unipamplona/portalIG/home_77/recursos/documentos/12092017/sustentacion_anteproyecto.doc" 
+          class="download-link">[Descargar]
+          </a>
+        </div>
+        
+        <div class="document-item">
+          <span>• Formato - Modelo de acta presustentación para trabajo de grado </span>
+          <a href="https://www.unipamplona.edu.co/unipamplona/portalIG/home_77/recursos/documentos/12092017/presustentacion_trabajodegrado.doc" 
+          class="download-link">[Descargar]
+          </a>
+        </div>
+        
+        <div class="document-item">
+          <span>• Formato - FGA 72: Acta de Sustentación de Trabajo de Grado - Pregrado </span>
+          <p>[No Disponible]</p>
+        </div>
+        
+        <div class="document-item">
+          <span>• Formato - Registro de Egresados </span>
+          <p>[No Disponible]</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Calendarios -->
+    <section class="section">
+      <h2 class="section-title">Calendarios</h2>
+      
+      <div class="calendars-list">
+        <div class="calendar-item">
+          <span>• Calendario Ajustado Trabajo de Grado 2023-1 Pamplona </span>
+          <a href="#" class="download-link">[Descargar]</a>
+        </div>
+        
+        <div class="calendar-item">
+          <span>• Calendario Ajustado Anteproyectos 2023-1 Pamplona </span>
+          <a href="#" class="download-link">[Descargar]</a>
+        </div>
+        
+        <div class="calendar-item">
+          <span>• Calendario Ajustado Trabajo de Grado 2023-1 Villa del Rosario </span>
+          <a href="#" class="download-link">[Descargar]</a>
+        </div>
+        
+        <div class="calendar-item">
+          <span>• Calendario Ajustado Anteproyectos 2023-1 Villa del Rosario </span>
+          <a href="#" class="download-link">[Descargar]</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Normatividad -->
+    <section class="section">
+      <h2 class="section-title">Normatividad</h2>
+      
+      <div class="regulations-list">
+        <p><a href="https://www.unipamplona.edu.co/unipamplona/portalIG/home_11/recursos/general/documentos/27102009/regla_prese_20081.pdf" 
+            target="_blank"
+            class="regulation-link">Acuerdo 186 del 2 de Diciembre de 2005
+            </a> - Reglamento Estudiantil
+        </p>
+        
+        <div class="regulation-items">
+          <div class="regulation-item">• Artículo 5 - Requisitos de Grado</div>
+          <div class="regulation-item">• Artículo 31 - Calificación</div>
+          <div class="regulation-item">• Capítulo IV - Trabajo de Grado</div>
+          <div class="regulation-item">• Artículo 35 - Definición de Trabajo de Grado</div>
+          <div class="regulation-item">• Artículo 36 - Modalidades de Trabajo de Grado</div>
+          <div class="regulation-item">• Artículo 37 - Comité de Trabajo de Grado</div>
+          <div class="regulation-item">• Artículo 38 - Procedimiento para Trabajo de Grado</div>
+          <div class="regulation-item">• Artículo 46 - Mención de Meritorio y Laureado</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Canales de Contacto -->
+    <section class="section contact-section">
+        <h2 class="section-title">Canales de Contacto</h2>
+        
+        <div class="contact-info-container">
+          <div class="contact-block">
+            <h3>Oficina de Graduaciones - Ingeniería de Sistemas</h3>
+            
+            <div class="contact-detail">
+              <h4>Ubicación</h4>
+              <p>Edificio de Ingenierías, piso 3 - Campus Principal, Pamplona</p>
+            </div>
+  
+            <div class="contact-detail">
+              <h4>Teléfono:</h4>
+              <p>• Fijo: +57 (605) 568 5300 Ext. 123</p>
+              <p>• Móvil: 320 123 4567 (WhatsApp)</p>
+            </div>
+  
+            <div class="contact-detail">
+              <h4>Correos Electrónicos:</h4>
+              <p>• General: <a href="mailto:graduaciones.sistemas@unipamplona.edu.co">graduaciones.sistemas@unipamplona.edu.co</a></p>
+              <p>• Asesoría personalizada: <a href="mailto:asesoria.grados@unipamplona.edu.co">asesoria.grados@unipamplona.edu.co</a></p>
+            </div>
+  
+            <div class="contact-detail">
+              <h4>Horario de Atención:</h4>
+              <p>Lunes a viernes: 8:00 a.m. - 12:00 m / 2:00 p.m. - 6:00 p.m.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+  </div>
+</main>
+
+
 </Layout>
+
+
+<style>
+    .main-content {
+      padding: 100px 0 50px;
+      background: #f8f9fa;
+      min-height: 100vh;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    .section {
+      background: white;
+      border-radius: 12px;
+      padding: 40px;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    }
+    
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #2c3e50;
+      margin-bottom: 30px;
+      text-align: center;
+      border-bottom: 3px solid #d32f2f;
+      padding-bottom: 15px;
+    }
+    
+    /* Comités */
+    .committees-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+    
+    .committee-column h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #2c3e50;
+      margin-bottom: 20px;
+    }
+    
+    .member {
+      margin-bottom: 15px;
+      padding: 15px;
+      background: #f8f9fa;
+      border-radius: 8px;
+      line-height: 1.5;
+    }
+    
+    .contact-info {
+      margin-top: 20px;
+      padding: 15px;
+      background: #e3f2fd;
+      border-radius: 8px;
+    }
+    
+    .contact-info a {
+      color: #1976d2;
+      text-decoration: none;
+      font-weight: 500;
+      word-break: break-word;
+      display: inline-block;
+      max-width: 100%;
+    }
+    
+    .contact-info a:hover {
+      text-decoration: underline;
+    }
+    
+    /* Documentos */
+    .documents-list {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    
+    .document-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px;
+      background: #f8f9fa;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+    
+    .document-item:hover {
+      background: #e8f5e8;
+    }
+    
+    .download-link {
+      color: #d32f2f;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    
+    .download-link:hover {
+      color: #b71c1c;
+      text-decoration: underline;
+    }
+    
+    /* Calendarios */
+    .calendars-list {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    
+    .calendar-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px;
+      background: #f8f9fa;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+    
+    .calendar-item:hover {
+      background: #fff3e0;
+    }
+    
+    /* Normatividad */
+    .regulations-list {
+      line-height: 1.8;
+    }
+    
+    .regulation-link {
+      color: #1976d2;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    
+    .regulation-link:hover {
+      text-decoration: underline;
+    }
+    
+    .regulation-items {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 15px;
+    }
+    
+    .regulation-item {
+      padding: 15px;
+      background: #f8f9fa;
+      border-radius: 8px;
+      line-height: 1.5;
+    }
+    
+    /* Contacto */
+    .contact-section {
+      background: linear-gradient(135deg, #f8f9fa 0%, #e3f2fd 100%);
+    }
+    
+    .contact-info-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .contact-block {
+      background: white;
+      border-radius: 8px;
+      padding: 40px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .contact-block h3 {
+      color: #2c3e50;
+      font-size: 1.5rem;
+      margin-bottom: 30px;
+      font-weight: 600;
+      text-align: center;
+    }
+    
+    .contact-detail {
+      margin-bottom: 25px;
+    }
+    
+    .contact-detail h4 {
+      color: #d32f2f;
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+    
+    .contact-detail p {
+      margin-bottom: 5px;
+      line-height: 1.6;
+      font-size: 1rem;
+    }
+    
+    .contact-detail a {
+      color: #1976d2;
+      text-decoration: none;
+      word-break: break-word;
+      display: inline-block;
+      max-width: 100%;
+    }
+    
+    .contact-detail a:hover {
+      text-decoration: underline;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .main-content {
+        padding: 80px 0 30px;
+      }
+    
+      .section {
+        padding: 25px 20px;
+        margin-bottom: 20px;
+      }
+    
+      .section-title {
+        font-size: 1.5rem;
+      }
+    
+      .committees-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+      }
+    
+      .document-item,
+      .calendar-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+    
+      .regulation-items {
+        grid-template-columns: 1fr;
+      }
+    
+      .contact-block {
+        padding: 25px 20px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 15px;
+      }
+    
+      .section {
+        padding: 20px 15px;
+      }
+    
+      .section-title {
+        font-size: 1.3rem;
+      }
+    
+      .contact-block {
+        padding: 20px 15px;
+      }
+    }
+    </style>
