@@ -85,14 +85,6 @@ export default function FloatingChat() {
 
   return (
     <>
-      {/* Backdrop overlay cuando está abierto - SOLO en móviles */}
-      {isOpen && (
-        <div 
-          className="fixed inset-0 bg-black bg-opacity-25 z-40 md:hidden"
-          onClick={() => setIsOpen(false)}
-        />
-      )}
-
       {/* Contenedor principal del chatbot */}
       <div 
         className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50"
