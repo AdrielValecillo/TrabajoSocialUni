@@ -190,10 +190,16 @@ import { ClientRouter } from 'astro:transitions';
 </script>
 
 <style>
+  /* Global box-sizing fix */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
   .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    width: 100%;
   }
 
   /* Hero Section */
@@ -202,7 +208,8 @@ import { ClientRouter } from 'astro:transitions';
     display: flex;
     align-items: center;
     position: relative;
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    background: #ffffff;
+    background: linear-gradient(0deg,rgba(255, 255, 255, 1) 0%, rgba(230, 230, 230, 1) 100%);
     overflow: hidden;
   }
 
@@ -502,15 +509,16 @@ import { ClientRouter } from 'astro:transitions';
     60% { transform: translateX(-50%) translateY(-5px); }
   }
 
-  /* Features Section */
+  /* Features Section - FIXED FOR MOBILE */
   .features-section {
-    padding: 100px 0;
+    padding: 80px 0;
     background: white;
+    overflow-x: hidden; /* Prevent horizontal scroll */
   }
 
   .section-header {
     text-align: center;
-    margin-bottom: 80px;
+    margin-bottom: 60px;
   }
 
   .section-title {
@@ -529,19 +537,22 @@ import { ClientRouter } from 'astro:transitions';
 
   .features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 40px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    width: 100%;
   }
 
   .feature-card {
     text-align: center;
-    padding: 40px 30px;
+    padding: 30px 20px;
     border-radius: 20px;
     background: white;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
     opacity: 0;
     transform: translateY(30px);
+    width: 100%;
+    max-width: 100%;
   }
 
   .feature-card.animate-in {
@@ -610,11 +621,10 @@ import { ClientRouter } from 'astro:transitions';
 
   /* Responsive Design */
   @media (max-width: 768px) {
-
     .container {
-      padding: 20px;
-      margin: 20px;
+      padding: 0 15px;
     }
+
     .hero-content {
       grid-template-columns: 1fr;
       gap: 40px;
@@ -639,18 +649,42 @@ import { ClientRouter } from 'astro:transitions';
       font-size: 1rem;
     }
 
-    .features-grid {
-      grid-template-columns: 1fr;
-      gap: 30px;
+    /* Features section mobile fixes */
+    .features-section {
+      padding: 60px 0;
     }
 
-    .scroll-indicator {
-      display: none;
+    .section-header {
+      margin-bottom: 40px;
     }
+
+    .section-title {
+      font-size: 2rem;
+    }
+
+    .section-subtitle {
+      font-size: 1rem;
+    }
+
+    .features-grid {
+      grid-template-columns: 1fr;
+      gap: 25px;
+    }
+
+    .feature-card {
+      padding: 30px;
+      margin: 30px;
+    }
+    .hero-section {
+      padding: 20px 0;
+    }
+    
   }
 
   @media (max-width: 480px) {
-
+    .container {
+      padding: 0 10px;
+    }
 
     .hero-title {
       font-size: 2rem;
@@ -661,7 +695,39 @@ import { ClientRouter } from 'astro:transitions';
     }
 
     .section-title {
-      font-size: 2rem;
+      font-size: 1.8rem;
+    }
+
+    .features-grid {
+      gap: 20px;
+    }
+
+    .feature-card {
+      padding: 20px 10px;
+    }
+
+    .feature-card h3 {
+      font-size: 1.1rem;
+    }
+
+    .feature-card p {
+      font-size: 0.9rem;
+    }
+  }
+
+  /* Extra small devices */
+  @media (max-width: 320px) {
+    .container {
+      padding: 0 8px;
+    }
+
+    .features-grid {
+      grid-template-columns: 1fr;
+      gap: 15px;
+    }
+
+    .feature-card {
+      padding: 15px 8px;
     }
   }
 </style>

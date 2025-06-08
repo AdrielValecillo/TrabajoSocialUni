@@ -85,79 +85,109 @@ export default function FloatingChat() {
 
   return (
     <>
+      {/* Backdrop overlay cuando está abierto - SOLO en móviles */}
+      {isOpen && (
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-25 z-40 md:hidden"
+          onClick={() => setIsOpen(false)}
+        />
+      )}
+
       {/* Contenedor principal del chatbot */}
-      <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 flex flex-col items-end" >
-        {/* Chat window */}
-        <div
-          className={`mb-4 w-[320px] sm:w-[350px] max-w-[calc(100vw-2rem)] rounded-lg bg-white shadow-2xl transition-all duration-300 ease-in-out ${
-            isOpen ? "scale-100 opacity-100" : "scale-95 opacity-0 pointer-events-none"
-          }`}
-          style={{ zIndex: 999999 }}
-        >
-          {/* Chat header */}
-          <div className="flex items-center justify-between rounded-t-lg bg-blue-600 p-4 text-white">
-            <div className="flex items-center gap-2">
-              <MessageIcon />
-              <h3 className="font-medium">Chat de Ayuda</h3>
-            </div>
-            <button onClick={() => setIsOpen(false)} className="rounded-full p-1 hover:bg-blue-700 transition-colors">
-              <CloseIcon />
-            </button>
-          </div>
-
-          {/* Chat messages */}
-          <div className="h-[250px] sm:h-[300px] overflow-y-auto p-4">
-            <div className="flex flex-col gap-3">
-              {messages.map((msg, index) => (
-                <div
-                  key={index}
-                  className={`max-w-[80%] rounded-lg p-3 text-sm ${
-                    msg.isUser ? "ml-auto bg-blue-600 text-white" : "mr-auto bg-gray-100 text-gray-800"
-                  }`}
-                >
-                  {msg.text}
-                </div>
-              ))}
-              {isTyping && (
-                <div className="mr-auto flex items-center gap-2 rounded-lg bg-gray-100 p-3 text-gray-800">
-                  <LoaderIcon />
-                  <span className="text-sm">Escribiendo...</span>
-                </div>
-              )}
-            </div>
-          </div>
-
-          {/* Chat input */}
-          <form onSubmit={handleSubmit} className="border-t p-3">
-            <div className="flex items-center gap-2">
-              <input
-                type="text"
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                placeholder="Escribe un mensaje..."
-                className="flex-1 rounded-full border border-gray-300 px-4 py-2 text-sm focus:border-blue-500 focus:outline-none"
-              />
-              <button
-                type="submit"
-                disabled={!message.trim()}
-                className="rounded-full bg-blue-600 p-2 text-white transition-colors hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
+      <div 
+        className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50"
+        style={{ 
+          pointerEvents: isOpen ? 'auto' : 'none',
+          // Asegurar que solo el botón sea clickeable cuando está cerrado
+        }}
+      >
+        <div className="flex flex-col items-end">
+          {/* Chat window */}
+          <div
+            className={`mb-4 w-[320px] sm:w-[350px] max-w-[calc(100vw-2rem)] rounded-lg bg-white shadow-2xl transition-all duration-300 ease-in-out ${
+              isOpen ? "scale-100 opacity-100 pointer-events-auto" : "scale-95 opacity-0 pointer-events-none"
+            }`}
+            style={{ 
+              transformOrigin: 'bottom right',
+              // Asegurar que el chat window tenga z-index correcto
+              position: 'relative',
+              zIndex: 10
+            }}
+          >
+            {/* Chat header */}
+            <div className="flex items-center justify-between rounded-t-lg bg-blue-600 p-4 text-white">
+              <div className="flex items-center gap-2">
+                <MessageIcon />
+                <h3 className="font-medium">Chat de Ayuda</h3>
+              </div>
+              <button 
+                onClick={() => setIsOpen(false)} 
+                className="rounded-full p-1 hover:bg-blue-700 transition-colors"
+                type="button"
               >
-                <SendIcon />
+                <CloseIcon />
               </button>
             </div>
-          </form>
-        </div>
 
-        {/* Floating button */}
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className={`flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-full shadow-lg transition-all duration-300 ${
-            isOpen ? "bg-red-500 hover:bg-red-600" : "bg-blue-600 hover:bg-blue-700"
-          }`}
-          style={{ zIndex: 999999 }}
-        >
-          {isOpen ? <CloseIcon /> : <MessageIcon />}
-        </button>
+            {/* Chat messages */}
+            <div className="h-[250px] sm:h-[300px] overflow-y-auto p-4">
+              <div className="flex flex-col gap-3">
+                {messages.map((msg, index) => (
+                  <div
+                    key={index}
+                    className={`max-w-[80%] rounded-lg p-3 text-sm ${
+                      msg.isUser ? "ml-auto bg-blue-600 text-white" : "mr-auto bg-gray-100 text-gray-800"
+                    }`}
+                  >
+                    {msg.text}
+                  </div>
+                ))}
+                {isTyping && (
+                  <div className="mr-auto flex items-center gap-2 rounded-lg bg-gray-100 p-3 text-gray-800">
+                    <LoaderIcon />
+                    <span className="text-sm">Escribiendo...</span>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Chat input */}
+            <form onSubmit={handleSubmit} className="border-t p-3">
+              <div className="flex items-center gap-2">
+                <input
+                  type="text"
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  placeholder="Escribe un mensaje..."
+                  className="flex-1 rounded-full border border-gray-300 px-4 py-2 text-sm focus:border-blue-500 focus:outline-none"
+                />
+                <button
+                  type="submit"
+                  disabled={!message.trim()}
+                  className="rounded-full bg-blue-600 p-2 text-white transition-colors hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  <SendIcon />
+                </button>
+              </div>
+            </form>
+          </div>
+
+          {/* Floating button */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className={`flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-full shadow-lg transition-all duration-300 ${
+              isOpen ? "bg-red-500 hover:bg-red-600" : "bg-blue-600 hover:bg-blue-700"
+            }`}
+            style={{ 
+              pointerEvents: 'auto', // Siempre clickeable
+              position: 'relative',
+              zIndex: 20
+            }}
+            type="button"
+          >
+            {isOpen ? <CloseIcon /> : <MessageIcon />}
+          </button>
+        </div>
       </div>
     </>
   )
