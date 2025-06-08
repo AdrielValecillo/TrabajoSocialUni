@@ -35,6 +35,9 @@ import { ClientRouter } from 'astro:transitions';
         <button class="simple-tab" data-tab="practicas-empresariales">
           Prácticas Empresariales
         </button>
+        <button class="simple-tab" data-tab="especializacion">
+          Especialización (Posgrado)
+        </button>
         <button class="simple-tab" data-tab="tramites-finales">
           Trámites Finales
         </button>
@@ -146,6 +149,90 @@ import { ClientRouter } from 'astro:transitions';
             </ul>
           </div>
         </div>
+
+
+        <!-- Especialización (Posgrado) -->
+        <div class="tab-content" id="especializacion" transition:name="tab-content">
+          <div class="content-layout">
+            <div class="content-image">
+              <img src="/proceso/2.png" alt="Estudiantes en prácticas empresariales" class="main-image" />
+            </div>
+            <div class="content-text">
+              <h2 class="content-title">Especialización (Posgrado)</h2>
+              <p>
+                La Universidad de Pamplona sí permite realizar un semestre de especialización como parte 
+                de la modalidad de graduación del pregrado.
+              </p>
+              <p>
+                Una opción que permite reemplazar la práctica profesional o tesis por estudios de posgrado. 
+                Gracias al a <a href="https://www.unipamplona.edu.co/unipamplona/portalIG/home_11/recursos/general/contenidos_subgeneral/inscripciones_presencial/04092023/instructivoacuerdo065.pdf" target="_blank" rel="noopener noreferrer">
+                  acuerdo 065 del 6 de diciembre de 2022
+                  </a>, 
+                que articula programas de pregrado y posgrado.
+              </p>
+            </div>
+          </div>
+
+          <div class="content-details">
+            <h3>¿Quién puede optar?</h3>
+            <ul>
+              <li>
+                Estudiantes de décimo semestre (o último semestre) 
+                que estén cursando el trabajo de grado y hayan cumplido 
+                requisitos académicos del pregrado.
+              </li>
+            </ul>
+
+            <h3>Requisitos principales</h3>
+            <ul>
+              <li>
+                <strong>•</strong> Tener matrícula activa para el trabajo de grado en el pregrado.
+              </li>
+              <li>
+                <strong>•</strong> Presentar carta de intención al comité del 
+                trabajo de grado dentro de los plazos establecidos.
+              </li>
+              <li>
+                <strong>•</strong> Obtener aval del director del programa de pregrado.
+              </li>
+              <li>
+                <strong>•</strong> Solicitud formal a la Oficina de Posgrados y confirmación 
+                de la oferta académica del posgrado (especialización) para ese semestre.
+              </li>
+            </ul>
+
+            <h3>Proceso interno:</h3>
+            <ul>
+              <li>
+                <strong>1.</strong> Carta al comité de trabajo de grado (pregrado).
+              </li>
+              <li>
+                <strong>2.</strong> Aval del director académico.
+              </li>
+              <li>
+                <strong>3.</strong> Envío a Posgrados para autorización y verificación de 
+                disponibilidad del programa.
+              </li>
+              <li>
+                <strong>4.</strong> Matrícula y cursado del semestre de especialización.
+              </li>
+            </ul>
+
+            <h3>¿Qué implica cursar la especialización?</h3>
+            <ul>
+              <li>
+                <strong>•</strong> El semestre se cursa como un “Diplomado”, 
+                dividido en módulos (entre 10 y 12 módulos, cada uno con 
+                aproximadamente 12 horas, totalizando cerca de 120 horas). 
+              </li>
+              <li>
+                <strong>•</strong> Incluye componentes de formación investigativa y 
+                culmina con un trabajo final (monografía o aplicación).
+              </li>
+            </ul>
+          </div>
+        </div>
+
 
         <!-- Trámites Finales -->
         <div class="tab-content" id="tramites-finales" transition:name="tab-content">
@@ -265,6 +352,11 @@ import { ClientRouter } from 'astro:transitions';
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+  }
+  a{
+    text-decoration: underline;
+    color: #fa6a6a;
+    font-style: italic;
   }
   .hero-graduation {
   position: relative;
