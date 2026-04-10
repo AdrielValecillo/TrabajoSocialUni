@@ -1,479 +1,248 @@
 ---
+import FaqCategory from '../components/FaqCategory.astro';
+import FaqItem from '../components/FaqItem.astro';
 import Layout from '../layouts/Layout.astro';
-import { ClientRouter } from "astro:transitions";
+import PageHero from '../components/PageHero.astro';
 ---
 
-<Layout>
-    <ClientRouter />
-        
-        <!-- Hero Section -->
-        <section class="hero-graduation">
-          <div class="hero-overlay">
-            <div class="container">
-              <div class="hero-content">
-                <h1 class="hero-title">
-                  Preguntas Frecuentes<br>
-                  Sobre el Proceso de Graduación
-                </h1>
-                <p class="hero-subtitle">
-                    Encuentra respuestas rápidas o pregunta al chatbot si no ves tu duda aquí.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
+<Layout title="Preguntas Frecuentes - Universidad de Pamplona">
+  <PageHero subtitle="Encuentra respuestas rápidas o pregunta al chatbot si no ves tu duda aquí.">
+    <Fragment slot="title">
+      Preguntas Frecuentes<br />
+      Sobre el Proceso de Graduación
+    </Fragment>
+  </PageHero>
 
-          
-  <!-- Main Content -->
   <section class="faq-section">
     <div class="container">
-      <!-- Trabajo de Grado -->
-      <div class="faq-category">
-        <div class="category-header">
-          <div class="category-image">
-            <img src="/proceso/4.png" alt="Estudiantes graduándose" class="category-img" />
-          </div>
-          <div class="category-content">
-            <h2 class="category-title">Trabajo de Grado (Investigación)</h2>
-            <p class="category-description">
-              El Trabajo de Grado es el proyecto final que demuestra 
-              tus competencias como futuro Ingeniero de Sistemas.
-            </p>
-            <p class="category-description">
-              Aquí encontrarás dudas sobre requisitos, formatos, 
-              sustentación y evaluación.
-            </p>
-          </div>
-        </div>
-        
-        <div class="faq-list">
-          <div class="faq-item">
-            <button class="faq-question" onclick="toggleFAQ(this)">
-              <span>1. ¿Cuántos créditos necesito para hacer mi trabajo de grado?</span>
-              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="6,9 12,15 18,9"></polyline>
-              </svg>
-            </button>
-            <div class="faq-answer">
-              <p>Debes tener aprobado un mínimo de 150 créditos del plan de estudios. Verifica tu historial académico en el Portal de Estudiantes.</p>
-            </div>
-          </div>
+      <FaqCategory
+        title="Trabajo de Grado (Investigación)"
+        imageSrc="/proceso/4.png"
+        imageAlt="Estudiantes graduándose"
+        descriptions={[
+          'El Trabajo de Grado es el proyecto final que demuestra tus competencias como futuro Ingeniero de Sistemas.',
+          'Aquí encontrarás dudas sobre requisitos, formatos, sustentación y evaluación.',
+        ]}
+      >
+        <FaqItem question="1. ¿Cuántos créditos necesito para hacer mi trabajo de grado?">
+          <p>
+            Debes tener aprobado un mínimo de 150 créditos del plan de estudios. Verifica tu historial académico en el Portal de Estudiantes.
+          </p>
+        </FaqItem>
 
-          <div class="faq-item">
-            <button class="faq-question" onclick="toggleFAQ(this)">
-              <span>2. ¿Cómo elijo el director de tesis?</span>
-              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="6,9 12,15 18,9"></polyline>
-              </svg>
-            </button>
-            <div class="faq-answer">
-              <ul>
-                <li>Revisa la lista de profesores disponibles en <a href="#" class="link">lista digital</a></li>
-                <li>Contacta directamente por correo electrónico y presenta tu propuesta</li>
-                <li>El director debe ser certificado por el Comité de Grados</li>
-              </ul>
-            </div>
-          </div>
+        <FaqItem question="2. ¿Cómo elijo el director de tesis?">
+          <ul>
+            <li>
+              Revisa la lista de profesores disponibles en
+              <a href="#" class="link">lista digital</a>
+            </li>
+            <li>Contacta directamente por correo electrónico y presenta tu propuesta</li>
+            <li>El director debe ser certificado por el Comité de Grados</li>
+          </ul>
+        </FaqItem>
 
-          <div class="faq-item">
-            <button class="faq-question" onclick="toggleFAQ(this)">
-              <span>3. ¿Qué normas de formato debo seguir?</span>
-              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="6,9 12,15 18,9"></polyline>
-              </svg>
-            </button>
-            <div class="faq-answer">
-              <p>Respuesta: Usa las Normas APA en su última versión. Descarga la plantilla oficial <a href="#" class="link">aquí</a>.</p>
-            </div>
-          </div>
-        </div>
-      </div>
+        <FaqItem question="3. ¿Qué normas de formato debo seguir?">
+          <p>
+            Respuesta: Usa las Normas APA en su última versión. Descarga la plantilla oficial
+            <a href="#" class="link">aquí</a>.
+          </p>
+        </FaqItem>
+      </FaqCategory>
 
-      <!-- Prácticas Empresariales -->
-      <div class="faq-category">
-        <div class="category-header">
-          <div class="category-image">
-            <img src="/proceso/4.png" alt="Reunión empresarial" class="category-img" />
-          </div>
-          <div class="category-content">
-            <h2 class="category-title">Prácticas Empresariales</h2>
-            <p class="category-description">
-              Las prácticas empresariales te permiten aplicar tus conocimientos en el 
-              sector empresarial. Información sobre convenios, 
-              duración, informes y cómo validar esta experiencia en tu 
-              proceso de graduación.
-            </p>
-          </div>
-        </div>
-        
-        <div class="faq-list">
-          <div class="faq-item">
-            <button class="faq-question" onclick="toggleFAQ(this)">
-              <span>1. ¿Debo buscar una empresa que tenga convenio con la universidad?</span>
-              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="6,9 12,15 18,9"></polyline>
-              </svg>
-            </button>
-            <div class="faq-answer">
-              <p>Respuesta: No, el convenio es simplemnente una carta de presentación entre la empresa y la universidad.</p>
-            </div>
-          </div>
+      <FaqCategory
+        title="Prácticas Empresariales"
+        imageSrc="/proceso/4.png"
+        imageAlt="Reunión empresarial"
+        descriptions={[
+          'Las prácticas empresariales te permiten aplicar tus conocimientos en el sector empresarial. Información sobre convenios, duración, informes y cómo validar esta experiencia en tu proceso de graduación.',
+        ]}
+      >
+        <FaqItem question="1. ¿Debo buscar una empresa que tenga convenio con la universidad?">
+          <p>Respuesta: No, el convenio es simplemnente una carta de presentación entre la empresa y la universidad.</p>
+        </FaqItem>
 
-          <div class="faq-item">
-            <button class="faq-question" onclick="toggleFAQ(this)">
-              <span>2. ¿Cuánto dura el proceso de prácticas?</span>
-              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="6,9 12,15 18,9"></polyline>
-              </svg>
-            </button>
-            <div class="faq-answer">
-              <p>Respuesta: Mínimo 4 meses y máximo 6 meses, con dedicación de 8 horas semanales.</p>
-            </div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question" onclick="toggleFAQ(this)">
-              <span>3. ¿Puedo hacer las prácticas en la empresa donde trabajo?</span>
-              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="6,9 12,15 18,9"></polyline>
-              </svg>
-            </button>
-            <div class="faq-answer">
-              <p>Respuesta: Si, puedes hacer las prácticas en la empresa donde trabajas mientras 
-                cumpla con los requisitos establecidos y tus funciones sean relacionadas a la carrera.</p>
-            </div>
-          </div>
-        </div>
-      </div>
+        <FaqItem question="2. ¿Cuánto dura el proceso de prácticas?">
+          <p>Respuesta: Mínimo 4 meses y máximo 6 meses, con dedicación de 8 horas semanales.</p>
+        </FaqItem>
 
-      <!-- especializacion (postgrado) -->
-      <div class="faq-category">
-        <div class="category-header">
-          <div class="category-image">
-            <img src="/proceso/4.png" alt="Reunión empresarial" class="category-img" />
-          </div>
-          <div class="category-content">
-            <h2 class="category-title">Especialización (Posgrado)</h2>
-            <p class="category-description">
-              La especialización es una opción que permite reemplazar la práctica profesional o tesis por estudios del primer semestre del posgrado. 
-              Gracias al acuerdo 065 del 6 de diciembre de 2022, que articula programas de pregrado y posgrado.
-            </p>
-          </div>
-        </div>
-        
-        <div class="faq-list">
-          <div class="faq-item">
-            <button class="faq-question" onclick="toggleFAQ(this)">
-              <span>1. ¿Qué programas de especialización están disponibles como modalidad de grado?</span>
-              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="6,9 12,15 18,9"></polyline>
-              </svg>
-            </button>
-            <div class="faq-answer">
-              <p>Respuesta: Depende del semestre. Verifica en la Oficina de Posgrados o 
-                con tu coordinación académica.
-              </p>
-            </div>
-          </div>
+        <FaqItem question="3. ¿Puedo hacer las prácticas en la empresa donde trabajo?">
+          <p>
+            Respuesta: Si, puedes hacer las prácticas en la empresa donde trabajas mientras cumpla con los requisitos establecidos y tus funciones sean
+            relacionadas a la carrera.
+          </p>
+        </FaqItem>
+      </FaqCategory>
 
-          <div class="faq-item">
-            <button class="faq-question" onclick="toggleFAQ(this)">
-              <span>2. ¿El semestre de especialización reemplaza completamente el trabajo de grado?</span>
-              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="6,9 12,15 18,9"></polyline>
-              </svg>
-            </button>
-            <div class="faq-answer">
-              <p>Respuesta: Sí, en esta modalidad cursas módulos de posgrado y 
-                realizas un trabajo final evaluado.
-              </p>
-            </div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question" onclick="toggleFAQ(this)">
-              <span>3. ¿Puedo homologar ese semestre de especialización si luego continúo la especialización completa?</span>
-              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="6,9 12,15 18,9"></polyline>
-              </svg>
-            </button>
-            <div class="faq-answer">
-              <p>Respuesta: Sí, usualmente se convalida como el primer semestre del programa de posgrado.</p>
-            </div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question" onclick="toggleFAQ(this)">
-              <span>4. ¿Cuál es el costo del semestre de especialización como modalidad de grado?</span>
-              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="6,9 12,15 18,9"></polyline>
-              </svg>
-            </button>
-            <div class="faq-answer">
-              <p>Respuesta: Tiene un valor similar al de un semestre de posgrado. Consulta con Tesorería o Posgrados.</p>
-            </div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question" onclick="toggleFAQ(this)">
-              <span>5. ¿Cómo se solicita esta modalidad?</span>
-              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="6,9 12,15 18,9"></polyline>
-              </svg>
-            </button>
-            <div class="faq-answer">
-              <p>Respuesta: Mediante carta de intención dirigida al Comité de Grados y aval del director de programa.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Trámites Finales -->
-      <div class="faq-category">
-        <div class="category-header">
-          <div class="category-image">
-            <img src="/proceso/4.png" alt="Grupo de estudiantes" class="category-img" />
-          </div>
-          <div class="category-content">
-            <h2 class="category-title">Trámites Finales</h2>
-            <p class="category-description">
-              Una vez completado tu trabajo de grado, es hora de hacer los 
-              trámites correspondientes: documentos requeridos, pagos, plazos y 
-              cómo asegurarte de que todo esté en orden antes de tu 
-              ceremonia de graduación.
-            </p>
-            <p class="category-description">
-              Desde cómo preparar tu defensa hasta las decisiones de la 
-              ceremonia de grado. Todo lo que necesitas saber para 
-              cerrar con éxito tu etapa universitaria.
-            </p>
-          </div>
-        </div>
-        
-        <div class="faq-list">
-          <div class="faq-item">
-            <button class="faq-question" onclick="toggleFAQ(this)">
-              <span>1. ¿Dónde pago los derechos de grado?</span>
-              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="6,9 12,15 18,9"></polyline>
-              </svg>
-            </button>
-            <div class="faq-answer">
-              <p>Respuesta: En la oficina de Tesorería Administrativa que se encuentra Piso uno sede.</p>
-            </div>
-          </div>
+      <FaqCategory
+        title="Especialización (Posgrado)"
+        imageSrc="/proceso/4.png"
+        imageAlt="Reunión empresarial"
+        descriptions={[
+          'La especialización es una opción que permite reemplazar la práctica profesional o tesis por estudios del primer semestre del posgrado. Gracias al acuerdo 065 del 6 de diciembre de 2022, que articula programas de pregrado y posgrado.',
+        ]}
+      >
+        <FaqItem question="1. ¿Qué programas de especialización están disponibles como modalidad de grado?">
+          <p>Respuesta: Depende del semestre. Verifica en la Oficina de Posgrados o con tu coordinación académica.</p>
+        </FaqItem>
 
-          <div class="faq-item">
-            <button class="faq-question" onclick="toggleFAQ(this)">
-              <span>2. ¿Qué documentos debo entregar finalmente?</span>
-              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="6,9 12,15 18,9"></polyline>
-              </svg>
-            </button>
-            <div class="faq-answer">
-              <ul>
-                <li>3 copias en pasta dura de tu trabajo de grado</li>
-                <li>Paz y salvo financiero Sistemas y Tesorería</li>
-              </ul>
-            </div>
-          </div>
+        <FaqItem question="2. ¿El semestre de especialización reemplaza completamente el trabajo de grado?">
+          <p>Respuesta: Sí, en esta modalidad cursas módulos de posgrado y realizas un trabajo final evaluado.</p>
+        </FaqItem>
 
-          <div class="faq-item">
-            <button class="faq-question" onclick="toggleFAQ(this)">
-              <span>3. ¿Puedo sustentar virtualmente?</span>
-              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="6,9 12,15 18,9"></polyline>
-              </svg>
-            </button>
-            <div class="faq-answer">
-              <p>Respuesta: Sí, se debe enviar solicitud y evidencia de la necesidad. Solo se examina con un día de anticipación.</p>
-            </div>
-          </div>
+        <FaqItem question="3. ¿Puedo homologar ese semestre de especialización si luego continúo la especialización completa?">
+          <p>Respuesta: Sí, usualmente se convalida como el primer semestre del programa de posgrado.</p>
+        </FaqItem>
 
-          <div class="faq-item">
-            <button class="faq-question" onclick="toggleFAQ(this)">
-              <span>4. ¿Cómo me inscribo a la ceremonia de grado?</span>
-              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="6,9 12,15 18,9"></polyline>
-              </svg>
-            </button>
-            <div class="faq-answer">
-              <p>Respuesta: Completa el formulario que se publica 3 meses antes del evento en el <a href="#" class="link">Portal de Graduandos</a>.</p>
-            </div>
-          </div>
-        </div>
-      </div>
+        <FaqItem question="4. ¿Cuál es el costo del semestre de especialización como modalidad de grado?">
+          <p>Respuesta: Tiene un valor similar al de un semestre de posgrado. Consulta con Tesorería o Posgrados.</p>
+        </FaqItem>
 
+        <FaqItem question="5. ¿Cómo se solicita esta modalidad?">
+          <p>Respuesta: Mediante carta de intención dirigida al Comité de Grados y aval del director de programa.</p>
+        </FaqItem>
+      </FaqCategory>
+
+      <FaqCategory
+        title="Trámites Finales"
+        imageSrc="/proceso/4.png"
+        imageAlt="Grupo de estudiantes"
+        descriptions={[
+          'Una vez completado tu trabajo de grado, es hora de hacer los trámites correspondientes: documentos requeridos, pagos, plazos y cómo asegurarte de que todo esté en orden antes de tu ceremonia de graduación.',
+          'Desde cómo preparar tu defensa hasta las decisiones de la ceremonia de grado. Todo lo que necesitas saber para cerrar con éxito tu etapa universitaria.',
+        ]}
+      >
+        <FaqItem question="1. ¿Dónde pago los derechos de grado?">
+          <p>Respuesta: En la oficina de Tesorería Administrativa que se encuentra Piso uno sede.</p>
+        </FaqItem>
+
+        <FaqItem question="2. ¿Qué documentos debo entregar finalmente?">
+          <ul>
+            <li>3 copias en pasta dura de tu trabajo de grado</li>
+            <li>Paz y salvo financiero Sistemas y Tesorería</li>
+          </ul>
+        </FaqItem>
+
+        <FaqItem question="3. ¿Puedo sustentar virtualmente?">
+          <p>Respuesta: Sí, se debe enviar solicitud y evidencia de la necesidad. Solo se examina con un día de anticipación.</p>
+        </FaqItem>
+
+        <FaqItem question="4. ¿Cómo me inscribo a la ceremonia de grado?">
+          <p>
+            Respuesta: Completa el formulario que se publica 3 meses antes del evento en el
+            <a href="#" class="link">Portal de Graduandos</a>.
+          </p>
+        </FaqItem>
+      </FaqCategory>
     </div>
   </section>
-
 </Layout>
 
 <script is:inline>
-  function toggleFAQ(button) {
-    const faqItem = button.parentElement;
-    const answer = faqItem.querySelector('.faq-answer');
-    const icon = button.querySelector('.faq-icon');
-    const isOpen = faqItem.classList.contains('active');
-    
-    if (isOpen) {
-      // Close
-      faqItem.classList.remove('active');
+  if (!window.__faqState) {
+    window.__faqState = {
+      bound: false,
+    };
+  }
+
+  function collapseFaqItem(item) {
+    if (!(item instanceof HTMLElement)) {
+      return;
+    }
+
+    item.classList.remove('active');
+
+    const answer = item.querySelector('.faq-answer');
+    const icon = item.querySelector('.faq-icon');
+
+    if (answer instanceof HTMLElement) {
       answer.style.maxHeight = '0';
+    }
+
+    if (icon instanceof HTMLElement || icon instanceof SVGElement) {
       icon.style.transform = 'rotate(0deg)';
-    } else {
-      // Close all other FAQs in the same category
-      const category = faqItem.closest('.faq-category');
-      const otherItems = category.querySelectorAll('.faq-item.active');
-      otherItems.forEach(item => {
-        item.classList.remove('active');
-        item.querySelector('.faq-answer').style.maxHeight = '0';
-        item.querySelector('.faq-icon').style.transform = 'rotate(0deg)';
-      });
-      
-      // Open this one
-      faqItem.classList.add('active');
-      answer.style.maxHeight = answer.scrollHeight + 'px';
-      icon.style.transform = 'rotate(180deg)';
     }
   }
 
-  // Initialize on page load
-  document.addEventListener('DOMContentLoaded', function() {
-    // Set initial state for all answers
-    const answers = document.querySelectorAll('.faq-answer');
-    answers.forEach(answer => {
-      answer.style.maxHeight = '0';
+  function resetFaqAnswers() {
+    document.querySelectorAll('.faq-item').forEach((item) => {
+      collapseFaqItem(item);
     });
-  });
-
-  // Re-initialize after Astro view transitions
-  document.addEventListener('astro:page-load', function() {
-    const answers = document.querySelectorAll('.faq-answer');
-    answers.forEach(answer => {
-      answer.style.maxHeight = '0';
-    });
-  });
-</script>
-    
-
-
-
-<style>
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
   }
-  .hero-graduation {
-  position: relative;
-  background-color: rgba(0, 0, 0, 0.4);  /* Fondo oscuro semitransparente si es necesario */
-  min-height: 400px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: rgb(255, 255, 255);
-  overflow: hidden;
-  transition: all 0.3s ease-in-out;  /* Suaviza la transición */
-}
 
-.hero-graduation::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: url('/fondopagina.avif');
-  background-size: cover;
-  background-position: center;
-  filter: blur(1px); /* Aplica el blur inicial */
-  z-index: -1; /* Asegura que la imagen esté debajo del contenido */
-  transition: filter 0.3s ease-in-out; /* Suaviza el cambio del blur */
-}
+  function setupFaqBehavior() {
+    const state = window.__faqState;
+    if (state.bound) {
+      return;
+    }
 
-/* Efecto hover: aumenta el blur cuando pasas el mouse */
-.hero-graduation:hover::before {
-  filter: blur(10px); /* Aumenta el blur a 10px cuando pasa el mouse */
-}
+    document.addEventListener('click', (event) => {
+      const target = event.target;
+      if (!(target instanceof Element)) {
+        return;
+      }
 
-.hero-content {
-  text-align: center;
-  max-width: 800px;
-  margin: 0 auto;
-  z-index: 1;  /* El texto se mantiene encima del fondo */
-}
+      const button = target.closest('[data-faq-toggle]');
+      if (!(button instanceof HTMLButtonElement)) {
+        return;
+      }
 
-.hero-title {
-  font-size: 3rem;
-  font-weight: 700;
-  margin-bottom: 20px;
-  line-height: 1.2;
-  text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7); /* Sombra del texto */
-}
+      const faqItem = button.closest('.faq-item');
+      const category = button.closest('.faq-category');
+      const answer = faqItem?.querySelector('.faq-answer');
+      const icon = button.querySelector('.faq-icon');
 
-.hero-subtitle {
-  font-size: 1.2rem;
-  opacity: 0.9;
-  margin: 0;
-  text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7); /* Sombra del texto */
-}
+      if (
+        !(faqItem instanceof HTMLElement) ||
+        !(category instanceof HTMLElement) ||
+        !(answer instanceof HTMLElement) ||
+        (!(icon instanceof HTMLElement) && !(icon instanceof SVGElement))
+      ) {
+        return;
+      }
 
+      const isOpen = faqItem.classList.contains('active');
 
+      category.querySelectorAll('.faq-item.active').forEach((item) => {
+        collapseFaqItem(item);
+      });
 
-  /* Smooth transitions for view transitions */
+      if (!isOpen) {
+        faqItem.classList.add('active');
+        answer.style.maxHeight = `${answer.scrollHeight}px`;
+        icon.style.transform = 'rotate(180deg)';
+      }
+    });
+
+    state.bound = true;
+  }
+
+  function initFaq() {
+    setupFaqBehavior();
+    resetFaqAnswers();
+  }
+
+  if (!window.__faqLoadBound) {
+    document.addEventListener('astro:page-load', initFaq);
+    window.__faqLoadBound = true;
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFaq, { once: true });
+  } else {
+    initFaq();
+  }
+</script>
+
+<style is:global>
   @view-transition {
     navigation: auto;
   }
 
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .hero-title {
-      font-size: 2rem;
-    }
-
-    .hero-subtitle {
-      font-size: 1rem;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .content-section {
-      padding: 30px 0 40px;
-    }
-
-    .simple-tabs {
-      gap: 10px;
-    }
-
-    .simple-tab {
-      font-size: 0.9rem;
-    }
-
-    .simple-tab.active::after {
-      bottom: -6px;
-      height: 2px;
-    }
-
-    .content-title {
-      font-size: 1.8rem;
-    }
-
-    .content-text p {
-      font-size: 1rem;
-    }
-  }
-
-  
   .faq-section {
     padding: 40px 0 60px;
     background: #f8f9fa;
   }
 
-  .page-title {
-    text-align: center;
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #333;
-    margin-bottom: 50px;
-  }
-
-  /* Category Sections */
   .faq-category {
     background: white;
     border-radius: 12px;
@@ -519,7 +288,6 @@ import { ClientRouter } from "astro:transitions";
     margin-bottom: 0;
   }
 
-  /* FAQ Items */
   .faq-list {
     border-top: 1px solid #f0f0f0;
   }
@@ -608,18 +376,12 @@ import { ClientRouter } from "astro:transitions";
     opacity: 0.8;
   }
 
-  /* Active state */
   .faq-item.active .faq-question {
     background-color: #f8f9fa;
     color: #d32f2f;
   }
 
-  /* Responsive Design */
   @media (max-width: 768px) {
-    .page-title {
-      font-size: 2rem;
-    }
-
     .category-header {
       grid-template-columns: 1fr;
       gap: 20px;
@@ -632,12 +394,26 @@ import { ClientRouter } from "astro:transitions";
     }
 
     .faq-question {
-      padding: 15px 20px;
+      padding: 14px 16px;
       font-size: 0.95rem;
+      gap: 10px;
+      line-height: 1.4;
     }
 
     .faq-answer {
       padding: 0 20px;
+    }
+
+    .faq-answer p,
+    .faq-answer ul {
+      padding: 16px 0;
+      font-size: 0.9rem;
+    }
+
+    .faq-icon {
+      width: 18px;
+      height: 18px;
+      margin-left: 10px;
     }
   }
 
@@ -646,30 +422,87 @@ import { ClientRouter } from "astro:transitions";
       padding: 30px 0 40px;
     }
 
-    .page-title {
-      font-size: 1.8rem;
-      margin-bottom: 30px;
+    .category-header {
+      padding: 14px;
+      gap: 14px;
     }
 
-    .category-header {
-      padding: 15px;
+    .category-img {
+      height: 180px;
     }
 
     .category-title {
-      font-size: 1.3rem;
+      font-size: 1.2rem;
+      margin-bottom: 10px;
     }
 
     .category-description {
-      font-size: 0.9rem;
+      font-size: 0.88rem;
+      line-height: 1.45;
     }
 
     .faq-question {
-      padding: 12px 15px;
-      font-size: 0.9rem;
+      padding: 12px 14px;
+      font-size: 0.88rem;
     }
 
     .faq-answer {
-      padding: 0 15px;
+      padding: 0 14px;
+    }
+
+    .faq-answer p,
+    .faq-answer ul {
+      font-size: 0.86rem;
+      line-height: 1.5;
+    }
+  }
+
+  @media (max-width: 360px) {
+    .faq-section {
+      padding: 24px 0 32px;
+    }
+
+    .faq-category {
+      border-radius: 10px;
+      margin-bottom: 24px;
+    }
+
+    .category-header {
+      padding: 12px;
+    }
+
+    .category-img {
+      height: 155px;
+      border-radius: 6px;
+    }
+
+    .category-title {
+      font-size: 1.05rem;
+    }
+
+    .category-description {
+      font-size: 0.8rem;
+    }
+
+    .faq-question {
+      padding: 11px 12px;
+      font-size: 0.82rem;
+    }
+
+    .faq-icon {
+      width: 16px;
+      height: 16px;
+      margin-left: 8px;
+    }
+
+    .faq-answer {
+      padding: 0 12px;
+    }
+
+    .faq-answer p,
+    .faq-answer ul {
+      padding: 12px 0;
+      font-size: 0.8rem;
     }
   }
 </style>

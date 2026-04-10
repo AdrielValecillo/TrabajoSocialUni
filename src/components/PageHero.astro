@@ -1,0 +1,20 @@
+---
+interface Props {
+  subtitle: string;
+}
+
+const { subtitle } = Astro.props;
+---
+
+<section class="hero-graduation">
+  <div class="hero-overlay">
+    <div class="container">
+      <div class="hero-content">
+        <h1 class="hero-title">
+          <slot name="title" />
+        </h1>
+        <p class="hero-subtitle">{subtitle}</p>
+      </div>
+    </div>
+  </div>
+</section>

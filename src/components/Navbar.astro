@@ -47,7 +47,7 @@ const navItems = [
     <div class="nav-menu">
       <div class="nav-container">
         <!-- Botón hamburguesa para móvil - CENTRADO -->
-        <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menú">
+        <button class="mobile-menu-toggle" data-mobile-menu-toggle aria-label="Abrir menú" aria-controls="navLinks" aria-expanded="false">
           <span class="hamburger-line"></span>
           <span class="hamburger-line"></span>
           <span class="hamburger-line"></span>
@@ -63,7 +63,6 @@ const navItems = [
                 <a 
                   href={item.path} 
                   class={`nav-link ${isActive ? 'active' : ''}`}
-                  onclick="closeMobileMenu()"
                 >
                   {item.label}
                 </a>
@@ -76,45 +75,71 @@ const navItems = [
 </nav>
 
 <script is:inline>
-  let isMenuOpen = false;
+  if (!window.__navbarState) {
+    window.__navbarState = {
+      isMenuOpen: false,
+      bound: false,
+    };
+  }
 
-  function toggleMobileMenu() {
+  function updateMenuState(isOpen) {
     const navLinks = document.getElementById('navLinks');
-    const menuToggle = document.querySelector('.mobile-menu-toggle');
-    
-    if (navLinks && menuToggle) {
-      isMenuOpen = !isMenuOpen;
-      
-      if (isMenuOpen) {
-        navLinks.classList.add('active');
-        menuToggle.classList.add('active');
-        menuToggle.setAttribute('aria-label', 'Cerrar menú');
-      } else {
-        navLinks.classList.remove('active');
-        menuToggle.classList.remove('active');
-        menuToggle.setAttribute('aria-label', 'Abrir menú');
+    const menuToggle = document.querySelector('[data-mobile-menu-toggle]');
+
+    if (!(navLinks instanceof HTMLElement) || !(menuToggle instanceof HTMLButtonElement)) {
+      return;
+    }
+
+    window.__navbarState.isMenuOpen = isOpen;
+    navLinks.classList.toggle('active', isOpen);
+    menuToggle.classList.toggle('active', isOpen);
+    menuToggle.setAttribute('aria-expanded', String(isOpen));
+    menuToggle.setAttribute('aria-label', isOpen ? 'Cerrar menú' : 'Abrir menú');
+  }
+
+  function initNavbarBehavior() {
+    if (window.__navbarState.bound) {
+      updateMenuState(false);
+      return;
+    }
+
+    document.addEventListener('click', (event) => {
+      const target = event.target;
+      if (!(target instanceof HTMLElement)) {
+        return;
       }
-    }
+
+      const toggleButton = target.closest('[data-mobile-menu-toggle]');
+      if (toggleButton instanceof HTMLButtonElement) {
+        updateMenuState(!window.__navbarState.isMenuOpen);
+        return;
+      }
+
+      const navLink = target.closest('.nav-link');
+      if (navLink instanceof HTMLAnchorElement) {
+        updateMenuState(false);
+      }
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768) {
+        updateMenuState(false);
+      }
+    });
+
+    window.__navbarState.bound = true;
   }
 
-  function closeMobileMenu() {
-    const navLinks = document.getElementById('navLinks');
-    const menuToggle = document.querySelector('.mobile-menu-toggle');
-    
-    if (navLinks && menuToggle) {
-      isMenuOpen = false;
-      navLinks.classList.remove('active');
-      menuToggle.classList.remove('active');
-      menuToggle.setAttribute('aria-label', 'Abrir menú');
-    }
+  if (!window.__navbarLoadBound) {
+    document.addEventListener('astro:page-load', initNavbarBehavior);
+    window.__navbarLoadBound = true;
   }
 
-  // Cerrar menú al redimensionar ventana
-  window.addEventListener('resize', function() {
-    if (window.innerWidth > 768) {
-      closeMobileMenu();
-    }
-  });
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initNavbarBehavior, { once: true });
+  } else {
+    initNavbarBehavior();
+  }
 </script>
 
 <style>
@@ -288,30 +313,40 @@ const navItems = [
   @media (max-width: 768px) {
     .navbar-container {
       flex-direction: column;
-      gap: 15px;
+      gap: 12px;
       text-align: center;
+      padding: 14px 18px;
     }
 
     .navbar-brand {
       flex-direction: column;
-      gap: 15px;
+      gap: 12px;
+    }
+
+    .university-logo {
+      width: 64px;
+      height: 64px;
     }
 
     .university-name {
-      font-size: 1.5rem;
+      font-size: 1.25rem;
     }
 
     .tagline {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
+      max-width: 100%;
+      line-height: 1.35;
     }
 
     .certifications {
-      gap: 10px;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
     }
 
     .cert-logo {
-      width: 45px;
-      height: 45px;
+      width: 40px;
+      height: 40px;
     }
 
     /* Mostrar botón hamburguesa en móvil - CENTRADO */
@@ -321,7 +356,9 @@ const navItems = [
     }
 
     .nav-container {
-      justify-content: center; /* Mantener centrado */
+      justify-content: center;
+      padding: 0 14px;
+      min-height: 56px;
     }
 
     /* Menú móvil */
@@ -349,7 +386,8 @@ const navItems = [
       transform: translateY(0);
       opacity: 1;
       visibility: visible;
-      max-height: 400px;
+      max-height: min(70vh, 460px);
+      overflow-y: auto;
     }
 
     .nav-item {
@@ -370,11 +408,12 @@ const navItems = [
     }
 
     .nav-link {
-      padding: 18px 20px;
+      padding: 16px 18px;
       border-bottom: none;
-      font-size: 1rem;
+      font-size: 0.95rem;
       transition: all 0.3s ease;
       text-align: center;
+      line-height: 1.35;
     }
 
     .nav-link:hover {
@@ -392,24 +431,57 @@ const navItems = [
   }
 
   @media (max-width: 480px) {
+    .navbar-container {
+      padding: 12px 14px;
+      gap: 10px;
+    }
+
+    .university-logo {
+      width: 56px;
+      height: 56px;
+    }
+
+    .university-name {
+      font-size: 1.05rem;
+      line-height: 1.25;
+    }
+
+    .tagline {
+      font-size: 0.74rem;
+    }
+
     .certifications {
-      flex-wrap: wrap;
-      justify-content: center;
-      display: none; /* Ocultar en pantallas muy pequeñas */
+      gap: 6px;
+      display: none;
     }
 
     .nav-link {
-      font-size: 0.95rem;
-      padding: 16px 20px;
+      font-size: 0.9rem;
+      padding: 14px 16px;
     }
 
     .mobile-menu-toggle {
-      padding: 10px;
+      padding: 9px;
     }
 
     .hamburger-line {
-      width: 22px;
-      height: 2.5px;
+      width: 20px;
+      height: 2px;
+    }
+  }
+
+  @media (max-width: 360px) {
+    .university-name {
+      font-size: 0.95rem;
+    }
+
+    .tagline {
+      font-size: 0.7rem;
+    }
+
+    .nav-link {
+      font-size: 0.86rem;
+      padding: 13px 14px;
     }
   }
 

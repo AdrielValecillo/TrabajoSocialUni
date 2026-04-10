@@ -1,13 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
-
-import { ClientRouter } from 'astro:transitions';
 ---
 
 <Layout title="Universidad de Pamplona - Orientación para Graduación">
-  <ClientRouter />
- 
-
   <section class="hero-section">
     <div class="hero-background">
       <div class="floating-elements">
@@ -143,65 +138,67 @@ import { ClientRouter } from 'astro:transitions';
 </Layout>
 
 <script is:inline>
+  if (!window.__homeAnimationsState) {
+    window.__homeAnimationsState = {
+      observer: null,
+      scrollHandler: null,
+    };
+  }
 
   function initializeAnimations() {
-    // Simple intersection observer for animations
+    const state = window.__homeAnimationsState;
     const observerOptions = {
       threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
+      rootMargin: '0px 0px -50px 0px',
     };
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+    if (state.observer) {
+      state.observer.disconnect();
+    }
+
+    state.observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('animate-in');
         }
       });
     }, observerOptions);
 
-    // Observe all elements with data-aos
-    document.querySelectorAll('[data-aos]').forEach(el => {
-      el.classList.remove('animate-in'); // Reset animations
-      observer.observe(el);
+    document.querySelectorAll('[data-aos]').forEach((el) => {
+      el.classList.remove('animate-in');
+      state.observer.observe(el);
     });
 
-    // Parallax effect for floating elements
-    const handleScroll = () => {
-      const scrolled = window.pageYOffset;
-      const parallax = document.querySelectorAll('.floating-element');
-      const speed = 0.5;
+    if (!state.scrollHandler) {
+      state.scrollHandler = () => {
+        const scrolled = window.pageYOffset;
+        const speed = 0.5;
 
-      parallax.forEach(element => {
-        const yPos = -(scrolled * speed);
-        element.style.transform = `translateY(${yPos}px)`;
-      });
-    };
+        document.querySelectorAll('.floating-element').forEach((element) => {
+          const yPos = -(scrolled * speed);
+          element.style.transform = `translateY(${yPos}px)`;
+        });
+      };
 
-    // Remove existing scroll listener to avoid duplicates
-    window.removeEventListener('scroll', handleScroll);
-    window.addEventListener('scroll', handleScroll);
+      window.addEventListener('scroll', state.scrollHandler, { passive: true });
+    }
+
+    state.scrollHandler();
   }
 
-  // Initialize on first load
-  document.addEventListener('DOMContentLoaded', initializeAnimations);
-  
-  // Re-initialize after Astro view transitions
-  document.addEventListener('astro:page-load', initializeAnimations);
+  if (!window.__homeAnimationsBound) {
+    document.addEventListener('astro:page-load', initializeAnimations);
+    window.__homeAnimationsBound = true;
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeAnimations, { once: true });
+  } else {
+    initializeAnimations();
+  }
 </script>
 
 <style>
-  /* Global box-sizing fix */
-  *, *::before, *::after {
-    box-sizing: border-box;
-  }
-
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-    width: 100%;
-  }
-
   /* Hero Section */
   .hero-section {
     min-height: 100vh;
@@ -622,120 +619,216 @@ import { ClientRouter } from 'astro:transitions';
 
   /* Responsive Design - IMPROVED MOBILE SPACING */
   @media (max-width: 768px) {
-    .container {
-      padding: 0 20px; /* Increased from 15px */
-    }
-
     .hero-section {
-      padding: 40px 0; /* Added vertical padding */
+      min-height: auto;
+      padding: 36px 0 52px;
     }
 
     .hero-content {
       grid-template-columns: 1fr;
-      gap: 40px;
+      gap: 28px;
       text-align: center;
     }
 
+    .hero-badge {
+      margin-bottom: 20px;
+      font-size: 0.82rem;
+      padding: 7px 12px;
+      border-radius: 999px;
+    }
+
     .hero-title {
-      font-size: 2.5rem;
+      font-size: 2.2rem;
+      margin-bottom: 18px;
+    }
+
+    .hero-description {
+      font-size: 1.02rem;
+      margin-bottom: 24px;
     }
 
     .hero-features {
       flex-direction: column;
-      gap: 20px;
+      gap: 14px;
+      margin-bottom: 24px;
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    .feature-item {
+      width: 100%;
+      justify-content: flex-start;
+      font-size: 0.95rem;
     }
 
     .hero-actions {
       justify-content: center;
+      width: 100%;
     }
 
     .cta-button {
-      padding: 14px 28px;
+      width: 100%;
+      justify-content: center;
+      padding: 13px 22px;
       font-size: 1rem;
+    }
+
+    .hero-visual {
+      width: 100%;
+    }
+
+    .image-container {
+      border-radius: 16px;
+    }
+
+    .hero-image {
+      height: 280px;
+    }
+
+    .scroll-indicator {
+      bottom: 14px;
     }
 
     /* Features section mobile fixes */
     .features-section {
-      padding: 60px 0;
+      padding: 48px 0;
     }
 
     .section-header {
-      margin-bottom: 40px;
+      margin-bottom: 28px;
     }
 
     .section-title {
-      font-size: 2rem;
+      font-size: 1.9rem;
+      margin-bottom: 10px;
     }
 
     .section-subtitle {
-      font-size: 1rem;
+      font-size: 0.98rem;
+      line-height: 1.45;
     }
 
     .features-grid {
       grid-template-columns: 1fr;
-      gap: 25px;
+      gap: 18px;
       max-width: 400px; /* Limit grid width on mobile */
       margin: 0 auto; /* Center the grid */
     }
 
     .feature-card {
-      padding: 30px 25px; /* Better padding */
+      padding: 24px 18px;
       margin: 0; /* Remove problematic margin */
       max-width: 100%; /* Full width within grid */
+      border-radius: 16px;
     }
   }
 
   @media (max-width: 480px) {
-    .container {
-      padding: 0 16px; /* Increased padding for small screens */
-    }
-
     .hero-section {
-      padding: 30px 0;
+      padding: 30px 0 46px;
     }
 
     .hero-title {
-      font-size: 2rem;
+      font-size: 1.88rem;
+      line-height: 1.15;
     }
 
     .hero-description {
-      font-size: 1rem;
+      font-size: 0.95rem;
+      margin-bottom: 18px;
+    }
+
+    .hero-badge {
+      font-size: 0.75rem;
+      margin-bottom: 14px;
+    }
+
+    .feature-item {
+      font-size: 0.9rem;
+      gap: 8px;
+    }
+
+    .feature-icon {
+      font-size: 1.2rem;
+    }
+
+    .cta-button {
+      font-size: 0.92rem;
+      padding: 12px 16px;
+      border-radius: 14px;
+    }
+
+    .button-icon {
+      width: 18px;
+      height: 18px;
+    }
+
+    .image-container {
+      border-radius: 14px;
+    }
+
+    .hero-image {
+      height: 240px;
     }
 
     .section-title {
-      font-size: 1.8rem;
+      font-size: 1.55rem;
+    }
+
+    .section-subtitle {
+      font-size: 0.92rem;
     }
 
     .features-grid {
-      gap: 20px;
+      gap: 14px;
       max-width: 100%; /* Full width on very small screens */
     }
 
     .feature-card {
-      padding: 25px 20px; /* Adjusted padding */
+      padding: 20px 16px;
     }
 
     .feature-card h3 {
-      font-size: 1.1rem;
+      font-size: 1rem;
+      margin-bottom: 10px;
     }
 
     .feature-card p {
-      font-size: 0.9rem;
+      font-size: 0.86rem;
+      line-height: 1.5;
     }
   }
 
   /* Extra small devices */
   @media (max-width: 320px) {
-    .container {
-      padding: 0 12px; /* Even more padding for tiny screens */
+    .hero-title {
+      font-size: 1.6rem;
+    }
+
+    .hero-image {
+      height: 210px;
     }
 
     .features-grid {
-      gap: 15px;
+      gap: 12px;
     }
 
     .feature-card {
-      padding: 20px 15px; /* Minimal but sufficient padding */
+      padding: 16px 12px;
+    }
+  }
+
+  @media (max-width: 360px) {
+    .hero-content {
+      gap: 22px;
+    }
+
+    .hero-features {
+      gap: 10px;
+    }
+
+    .features-section {
+      padding: 40px 0;
     }
   }
 </style>

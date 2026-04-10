@@ -1,0 +1,37 @@
+---
+interface Props {
+  text: string;
+  href?: string;
+  statusText?: string;
+  rowClass: string;
+  linkClass: string;
+  targetBlank?: boolean;
+}
+
+const {
+  text,
+  href,
+  statusText,
+  rowClass,
+  linkClass,
+  targetBlank = false,
+} = Astro.props;
+---
+
+<div class={rowClass}>
+  <span>{text}</span>
+  {
+    href ? (
+      <a
+        href={href}
+        class={linkClass}
+        target={targetBlank ? '_blank' : undefined}
+        rel={targetBlank ? 'noopener noreferrer' : undefined}
+      >
+        [Descargar]
+      </a>
+    ) : (
+      <p>{statusText ?? '[No Disponible]'}</p>
+    )
+  }
+</div>

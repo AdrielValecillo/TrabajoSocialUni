@@ -1,11 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { ClientRouter } from 'astro:transitions';
+import ResourceRow from '../components/ResourceRow.astro';
 ---
 
 <Layout title="Contactos y Documentos - Universidad de Pamplona">
-<ClientRouter />
-
 <main class="main-content">
   <div class="container">
     <!-- Comités de trabajo de grado -->
@@ -52,37 +50,37 @@ import { ClientRouter } from 'astro:transitions';
       <h2 class="section-title">Documentos relacionados</h2>
       
       <div class="documents-list">
-        <div class="document-item">
-          <span>• Formato - Modelo de anteproyecto para trabajo de grado </span>
-          <a href="/files/FormatoAprobacionAnteproyectoTG.doc" 
-          target="_blank"
-          class="download-link">[Descargar]
-          </a>
-        </div>
-        
-        <div class="document-item">
-          <span>• Formato - Modelo de acta sustentación de anteproyecto para trabajo de grado </span>
-          <a href="/files/acta_sustentacion.doc" 
-          class="download-link">[Descargar]
-          </a>
-        </div>
-        
-        <div class="document-item">
-          <span>• Formato - Modelo de acta presustentación para trabajo de grado </span>
-          <a href="https://www.unipamplona.edu.co/unipamplona/portalIG/home_77/recursos/documentos/12092017/presustentacion_trabajodegrado.doc" 
-          class="download-link">[Descargar]
-          </a>
-        </div>
-        
-        <div class="document-item">
-          <span>• Formato - FGA 72: Acta de Sustentación de Trabajo de Grado - Pregrado </span>
-          <p>[No Disponible]</p>
-        </div>
-        
-        <div class="document-item">
-          <span>• Formato - Registro de Egresados </span>
-          <p>[No Disponible]</p>
-        </div>
+        <ResourceRow
+          rowClass="document-item"
+          linkClass="download-link"
+          text="• Formato - Modelo de anteproyecto para trabajo de grado"
+          href="/files/FormatoAprobacionAnteproyectoTG.doc"
+          targetBlank
+        />
+        <ResourceRow
+          rowClass="document-item"
+          linkClass="download-link"
+          text="• Formato - Modelo de acta sustentación de anteproyecto para trabajo de grado"
+          href="/files/acta_sustentacion.doc"
+        />
+        <ResourceRow
+          rowClass="document-item"
+          linkClass="download-link"
+          text="• Formato - Modelo de acta presustentación para trabajo de grado"
+          href="https://www.unipamplona.edu.co/unipamplona/portalIG/home_77/recursos/documentos/12092017/presustentacion_trabajodegrado.doc"
+        />
+        <ResourceRow
+          rowClass="document-item"
+          linkClass="download-link"
+          text="• Formato - FGA 72: Acta de Sustentación de Trabajo de Grado - Pregrado"
+          statusText="[No Disponible]"
+        />
+        <ResourceRow
+          rowClass="document-item"
+          linkClass="download-link"
+          text="• Formato - Registro de Egresados"
+          statusText="[No Disponible]"
+        />
       </div>
     </section>
 
@@ -91,25 +89,32 @@ import { ClientRouter } from 'astro:transitions';
       <h2 class="section-title">Calendarios</h2>
       
       <div class="calendars-list">
-        <div class="calendar-item">
-          <span>• Calendario Ajustado Trabajo de Grado 2025-1 Pamplona </span>
-          <p>[Por Actulizar]</p>
-        </div>
-        
-        <div class="calendar-item">
-          <span>• Calendario Ajustado Anteproyectos 2025-1 Pamplona </span>
-          <a href="/files/cro-apro-2025-1.pdf" target="_blank" class="download-link">[Descargar]</a>
-        </div>
-        
-        <div class="calendar-item">
-          <span>• Calendario Ajustado Trabajo de Grado 2025-1 Villa del Rosario </span>
-          <p>[Por Actulizar]</p>
-        </div>
-        
-        <div class="calendar-item">
-          <span>• Calendario Ajustado Anteproyectos 2025-1 Villa del Rosario </span>
-          <a href="/files/cro-apro-2025-1.pdf" target="_blank" class="download-link">[Descargar]</a>
-        </div>
+        <ResourceRow
+          rowClass="calendar-item"
+          linkClass="download-link"
+          text="• Calendario Ajustado Trabajo de Grado 2025-1 Pamplona"
+          statusText="[Por Actulizar]"
+        />
+        <ResourceRow
+          rowClass="calendar-item"
+          linkClass="download-link"
+          text="• Calendario Ajustado Anteproyectos 2025-1 Pamplona"
+          href="/files/cro-apro-2025-1.pdf"
+          targetBlank
+        />
+        <ResourceRow
+          rowClass="calendar-item"
+          linkClass="download-link"
+          text="• Calendario Ajustado Trabajo de Grado 2025-1 Villa del Rosario"
+          statusText="[Por Actulizar]"
+        />
+        <ResourceRow
+          rowClass="calendar-item"
+          linkClass="download-link"
+          text="• Calendario Ajustado Anteproyectos 2025-1 Villa del Rosario"
+          href="/files/cro-apro-2025-1.pdf"
+          targetBlank
+        />
       </div>
     </section>
 
@@ -181,12 +186,6 @@ import { ClientRouter } from 'astro:transitions';
       padding: 100px 0 50px;
       background: #f8f9fa;
       min-height: 100vh;
-    }
-    
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
     }
     
     .section {
@@ -389,16 +388,19 @@ import { ClientRouter } from 'astro:transitions';
     /* Responsive */
     @media (max-width: 768px) {
       .main-content {
-        padding: 80px 0 30px;
+        padding: 28px 0 26px;
       }
-    
+     
       .section {
-        padding: 25px 20px;
-        margin-bottom: 20px;
+        padding: 20px 16px;
+        margin-bottom: 16px;
+        border-radius: 10px;
       }
-    
+     
       .section-title {
-        font-size: 1.5rem;
+        font-size: 1.35rem;
+        margin-bottom: 18px;
+        padding-bottom: 10px;
       }
     
       .committees-grid {
@@ -410,7 +412,17 @@ import { ClientRouter } from 'astro:transitions';
       .calendar-item {
         flex-direction: column;
         align-items: flex-start;
-        gap: 10px;
+        gap: 8px;
+        padding: 12px;
+      }
+
+      .document-item span,
+      .calendar-item span,
+      .document-item p,
+      .calendar-item p,
+      .download-link {
+        font-size: 0.92rem;
+        line-height: 1.45;
       }
     
       .regulation-items {
@@ -418,25 +430,110 @@ import { ClientRouter } from 'astro:transitions';
       }
     
       .contact-block {
-        padding: 25px 20px;
+        padding: 20px 16px;
+      }
+
+      .contact-block h3 {
+        font-size: 1.3rem;
+        margin-bottom: 16px;
+      }
+
+      .contact-detail {
+        margin-bottom: 16px;
+      }
+
+      .contact-detail h4 {
+        font-size: 1rem;
+      }
+
+      .contact-detail p,
+      .contact-detail a,
+      .regulation-item,
+      .regulations-list p {
+        font-size: 0.92rem;
+        line-height: 1.5;
       }
     }
-    
+     
     @media (max-width: 480px) {
-      .container {
-        padding: 0 15px;
-      }
-    
       .section {
-        padding: 20px 15px;
+        padding: 16px 14px;
       }
-    
+     
       .section-title {
-        font-size: 1.3rem;
+        font-size: 1.18rem;
       }
-    
+
+      .committee-column h3 {
+        font-size: 1.1rem;
+        margin-bottom: 12px;
+      }
+
+      .member {
+        margin-bottom: 10px;
+        padding: 10px;
+        font-size: 0.88rem;
+      }
+
+      .contact-info {
+        margin-top: 12px;
+        padding: 10px;
+      }
+
+      .document-item span,
+      .calendar-item span,
+      .document-item p,
+      .calendar-item p,
+      .download-link,
+      .regulation-item,
+      .regulations-list p,
+      .contact-detail p,
+      .contact-detail a {
+        font-size: 0.84rem;
+      }
+     
       .contact-block {
-        padding: 20px 15px;
+        padding: 16px 14px;
+      }
+
+      .contact-block h3 {
+        font-size: 1.1rem;
+      }
+
+      .contact-detail h4 {
+        font-size: 0.95rem;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .main-content {
+        padding: 22px 0;
+      }
+
+      .section {
+        padding: 14px 12px;
+      }
+
+      .section-title {
+        font-size: 1.05rem;
+      }
+
+      .document-item,
+      .calendar-item {
+        padding: 10px;
+      }
+
+      .member,
+      .document-item span,
+      .calendar-item span,
+      .document-item p,
+      .calendar-item p,
+      .download-link,
+      .regulation-item,
+      .regulations-list p,
+      .contact-detail p,
+      .contact-detail a {
+        font-size: 0.78rem;
       }
     }
     </style>

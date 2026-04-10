@@ -1,0 +1,175 @@
+---
+interface Props {
+  id: string;
+  title: string;
+  imageSrc: string;
+  imageAlt: string;
+  active?: boolean;
+}
+
+const {
+  id,
+  title,
+  imageSrc,
+  imageAlt,
+  active = false,
+} = Astro.props;
+
+const tabClass = active ? 'tab-content active' : 'tab-content';
+---
+
+<div class={tabClass} id={id} transition:name="tab-content">
+  <div class="content-layout">
+    <div class="content-image">
+      <img src={imageSrc} alt={imageAlt} class="main-image" />
+    </div>
+    <div class="content-text">
+      <h2 class="content-title">{title}</h2>
+      <slot name="intro" />
+    </div>
+  </div>
+
+  <div class="content-details">
+    <slot name="details" />
+  </div>
+</div>
+
+<style>
+  .tab-content {
+    display: none;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .tab-content.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .content-layout {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 40px;
+    align-items: start;
+    margin-bottom: 40px;
+  }
+
+  .content-image {
+    position: sticky;
+    top: 20px;
+  }
+
+  .main-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+  }
+
+  .content-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 20px;
+    margin-top: 0;
+  }
+
+  .content-text :global(p) {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+
+  .content-details {
+    max-width: none;
+  }
+
+  .content-details :global(h3) {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #333;
+    margin: 30px 0 15px;
+  }
+
+  .content-details :global(ul) {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 30px;
+  }
+
+  .content-details :global(li) {
+    padding: 12px 0;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #555;
+    border-bottom: 1px solid #f5f5f5;
+  }
+
+  .content-details :global(li:last-child) {
+    border-bottom: none;
+  }
+
+  .content-details :global(strong) {
+    color: #d32f2f;
+    font-weight: 600;
+  }
+
+  @media (max-width: 768px) {
+    .content-layout {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+
+    .content-image {
+      position: static;
+    }
+
+    .content-title {
+      font-size: 2rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .content-title {
+      font-size: 1.8rem;
+    }
+
+    .main-image {
+      border-radius: 10px;
+      height: 220px;
+    }
+
+    .content-text :global(p) {
+      font-size: 1rem;
+    }
+  }
+
+  @media (max-width: 360px) {
+    .content-title {
+      font-size: 1.45rem;
+      line-height: 1.25;
+    }
+
+    .main-image {
+      height: 190px;
+    }
+
+    .content-text :global(p) {
+      font-size: 0.92rem;
+      line-height: 1.55;
+    }
+
+    .content-details :global(h3) {
+      font-size: 1rem;
+    }
+
+    .content-details :global(li) {
+      font-size: 0.88rem;
+      line-height: 1.45;
+    }
+  }
+</style>

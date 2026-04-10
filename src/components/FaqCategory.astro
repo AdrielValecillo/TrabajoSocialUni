@@ -1,0 +1,26 @@
+---
+interface Props {
+  title: string;
+  imageSrc: string;
+  imageAlt: string;
+  descriptions: string[];
+}
+
+const { title, imageSrc, imageAlt, descriptions } = Astro.props;
+---
+
+<div class="faq-category">
+  <div class="category-header">
+    <div class="category-image">
+      <img src={imageSrc} alt={imageAlt} class="category-img" />
+    </div>
+    <div class="category-content">
+      <h2 class="category-title">{title}</h2>
+      {descriptions.map((description) => <p class="category-description">{description}</p>)}
+    </div>
+  </div>
+
+  <div class="faq-list">
+    <slot />
+  </div>
+</div>
