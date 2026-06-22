@@ -18,5 +18,5 @@ Estos procedimientos son esenciales para garantizar que todo el proceso se lleve
 
 ### Contacto y Asesoría
 
-    - Para cualquier duda o inconveniente relacionado con estos trámites, los estudiantes pueden comunicarse con la oficina de graduaciones a través del correo electrónico [grado.ingenieria@unipamplona.edu.co](mailto:grado.ingenieria@unipamplona.edu.co).
-    - Además, el chatbot institucional está disponible para brindar asistencia inmediata y guiar a los estudiantes en cada paso del proceso.
+- Para cualquier duda o inconveniente relacionado con estos trámites, los estudiantes pueden comunicarse con la oficina de graduaciones a través del correo electrónico [grado.ingenieria@unipamplona.edu.co](mailto:grado.ingenieria@unipamplona.edu.co).
+- Además, el chatbot institucional está disponible para brindar asistencia inmediata y guiar a los estudiantes en cada paso del proceso.
