@@ -3,6 +3,11 @@ import FaqCategory from '../components/FaqCategory.astro';
 import FaqItem from '../components/FaqItem.astro';
 import Layout from '../layouts/Layout.astro';
 import PageHero from '../components/PageHero.astro';
+import { getCollection } from 'astro:content';
+import { marked } from 'marked';
+
+const rawEntries = await getCollection('preguntas-frecuentes');
+const categories = rawEntries.sort((a, b) => a.data.order - b.data.order);
 ---
 
 <Layout title="Preguntas Frecuentes - Universidad de Pamplona">
@@ -15,124 +20,27 @@ import PageHero from '../components/PageHero.astro';
 
   <section class="faq-section">
     <div class="container">
-      <FaqCategory
-        title="Trabajo de Grado (Investigación)"
-        imageSrc="/proceso/4.png"
-        imageAlt="Estudiantes graduándose"
-        descriptions={[
-          'El Trabajo de Grado es el proyecto final que demuestra tus competencias como futuro Ingeniero de Sistemas.',
-          'Aquí encontrarás dudas sobre requisitos, formatos, sustentación y evaluación.',
-        ]}
-      >
-        <FaqItem question="1. ¿Cuántos créditos necesito para hacer mi trabajo de grado?">
-          <p>
-            Debes tener aprobado un mínimo de 150 créditos del plan de estudios. Verifica tu historial académico en el Portal de Estudiantes.
-          </p>
-        </FaqItem>
-
-        <FaqItem question="2. ¿Cómo elijo el director de tesis?">
-          <ul>
-            <li>
-              Revisa la lista de profesores disponibles en
-              <a href="#" class="link">lista digital</a>
-            </li>
-            <li>Contacta directamente por correo electrónico y presenta tu propuesta</li>
-            <li>El director debe ser certificado por el Comité de Grados</li>
-          </ul>
-        </FaqItem>
-
-        <FaqItem question="3. ¿Qué normas de formato debo seguir?">
-          <p>
-            Respuesta: Usa las Normas APA en su última versión. Descarga la plantilla oficial
-            <a href="#" class="link">aquí</a>.
-          </p>
-        </FaqItem>
-      </FaqCategory>
-
-      <FaqCategory
-        title="Prácticas Empresariales"
-        imageSrc="/proceso/4.png"
-        imageAlt="Reunión empresarial"
-        descriptions={[
-          'Las prácticas empresariales te permiten aplicar tus conocimientos en el sector empresarial. Información sobre convenios, duración, informes y cómo validar esta experiencia en tu proceso de graduación.',
-        ]}
-      >
-        <FaqItem question="1. ¿Debo buscar una empresa que tenga convenio con la universidad?">
-          <p>Respuesta: No, el convenio es simplemnente una carta de presentación entre la empresa y la universidad.</p>
-        </FaqItem>
-
-        <FaqItem question="2. ¿Cuánto dura el proceso de prácticas?">
-          <p>Respuesta: Mínimo 4 meses y máximo 6 meses, con dedicación de 8 horas semanales.</p>
-        </FaqItem>
-
-        <FaqItem question="3. ¿Puedo hacer las prácticas en la empresa donde trabajo?">
-          <p>
-            Respuesta: Si, puedes hacer las prácticas en la empresa donde trabajas mientras cumpla con los requisitos establecidos y tus funciones sean
-            relacionadas a la carrera.
-          </p>
-        </FaqItem>
-      </FaqCategory>
-
-      <FaqCategory
-        title="Especialización (Posgrado)"
-        imageSrc="/proceso/4.png"
-        imageAlt="Reunión empresarial"
-        descriptions={[
-          'La especialización es una opción que permite reemplazar la práctica profesional o tesis por estudios del primer semestre del posgrado. Gracias al acuerdo 065 del 6 de diciembre de 2022, que articula programas de pregrado y posgrado.',
-        ]}
-      >
-        <FaqItem question="1. ¿Qué programas de especialización están disponibles como modalidad de grado?">
-          <p>Respuesta: Depende del semestre. Verifica en la Oficina de Posgrados o con tu coordinación académica.</p>
-        </FaqItem>
-
-        <FaqItem question="2. ¿El semestre de especialización reemplaza completamente el trabajo de grado?">
-          <p>Respuesta: Sí, en esta modalidad cursas módulos de posgrado y realizas un trabajo final evaluado.</p>
-        </FaqItem>
-
-        <FaqItem question="3. ¿Puedo homologar ese semestre de especialización si luego continúo la especialización completa?">
-          <p>Respuesta: Sí, usualmente se convalida como el primer semestre del programa de posgrado.</p>
-        </FaqItem>
-
-        <FaqItem question="4. ¿Cuál es el costo del semestre de especialización como modalidad de grado?">
-          <p>Respuesta: Tiene un valor similar al de un semestre de posgrado. Consulta con Tesorería o Posgrados.</p>
-        </FaqItem>
-
-        <FaqItem question="5. ¿Cómo se solicita esta modalidad?">
-          <p>Respuesta: Mediante carta de intención dirigida al Comité de Grados y aval del director de programa.</p>
-        </FaqItem>
-      </FaqCategory>
-
-      <FaqCategory
-        title="Trámites Finales"
-        imageSrc="/proceso/4.png"
-        imageAlt="Grupo de estudiantes"
-        descriptions={[
-          'Una vez completado tu trabajo de grado, es hora de hacer los trámites correspondientes: documentos requeridos, pagos, plazos y cómo asegurarte de que todo esté en orden antes de tu ceremonia de graduación.',
-          'Desde cómo preparar tu defensa hasta las decisiones de la ceremonia de grado. Todo lo que necesitas saber para cerrar con éxito tu etapa universitaria.',
-        ]}
-      >
-        <FaqItem question="1. ¿Dónde pago los derechos de grado?">
-          <p>Respuesta: En la oficina de Tesorería Administrativa que se encuentra Piso uno sede.</p>
-        </FaqItem>
-
-        <FaqItem question="2. ¿Qué documentos debo entregar finalmente?">
-          <ul>
-            <li>3 copias en pasta dura de tu trabajo de grado</li>
-            <li>Paz y salvo financiero Sistemas y Tesorería</li>
-          </ul>
-        </FaqItem>
-
-        <FaqItem question="3. ¿Puedo sustentar virtualmente?">
-          <p>Respuesta: Sí, se debe enviar solicitud y evidencia de la necesidad. Solo se examina con un día de anticipación.</p>
-        </FaqItem>
-
-        <FaqItem question="4. ¿Cómo me inscribo a la ceremonia de grado?">
-          <p>
-            Respuesta: Completa el formulario que se publica 3 meses antes del evento en el
-            <a href="#" class="link">Portal de Graduandos</a>.
-          </p>
-        </FaqItem>
-      </FaqCategory>
+      {
+        categories.map((category) => (
+          <FaqCategory
+            title={category.data.title}
+            imageSrc={category.data.imageSrc}
+            imageAlt={category.data.imageAlt}
+            descriptions={category.data.descriptions}
+          >
+            {
+              category.data.preguntas.map((pregunta) => {
+                const answerHtml = marked.parse(pregunta.answer, { async: false }) as string;
+                return (
+                  <FaqItem question={pregunta.question}>
+                    <Fragment set:html={answerHtml} />
+                  </FaqItem>
+                );
+              })
+            }
+          </FaqCategory>
+        ))
+      }
     </div>
   </section>
 </Layout>
@@ -338,27 +246,27 @@ import PageHero from '../components/PageHero.astro';
     background-color: #fafafa;
   }
 
-  .faq-answer p,
-  .faq-answer ul {
-    padding: 20px 0;
+  .faq-answer :global(p),
+  .faq-answer :global(ul) {
+    padding: 20px 0 24px;
     margin: 0;
     font-size: 0.95rem;
     line-height: 1.6;
     color: #555;
   }
 
-  .faq-answer ul {
+  .faq-answer :global(ul) {
     list-style: none;
     padding-left: 0;
   }
 
-  .faq-answer li {
+  .faq-answer :global(li) {
     padding: 5px 0;
     position: relative;
     padding-left: 20px;
   }
 
-  .faq-answer li::before {
+  .faq-answer :global(li::before) {
     content: '•';
     color: #d32f2f;
     font-weight: bold;
@@ -366,13 +274,13 @@ import PageHero from '../components/PageHero.astro';
     left: 0;
   }
 
-  .link {
+  .faq-answer :global(a) {
     color: #d32f2f;
     text-decoration: underline;
     transition: opacity 0.3s ease;
   }
 
-  .link:hover {
+  .faq-answer :global(a:hover) {
     opacity: 0.8;
   }
 
@@ -404,9 +312,9 @@ import PageHero from '../components/PageHero.astro';
       padding: 0 20px;
     }
 
-    .faq-answer p,
-    .faq-answer ul {
-      padding: 16px 0;
+    .faq-answer :global(p),
+    .faq-answer :global(ul) {
+      padding: 16px 0 20px;
       font-size: 0.9rem;
     }
 
@@ -450,8 +358,9 @@ import PageHero from '../components/PageHero.astro';
       padding: 0 14px;
     }
 
-    .faq-answer p,
-    .faq-answer ul {
+    .faq-answer :global(p),
+    .faq-answer :global(ul) {
+      padding: 14px 0 18px;
       font-size: 0.86rem;
       line-height: 1.5;
     }
@@ -499,9 +408,9 @@ import PageHero from '../components/PageHero.astro';
       padding: 0 12px;
     }
 
-    .faq-answer p,
-    .faq-answer ul {
-      padding: 12px 0;
+    .faq-answer :global(p),
+    .faq-answer :global(ul) {
+      padding: 12px 0 16px;
       font-size: 0.8rem;
     }
   }

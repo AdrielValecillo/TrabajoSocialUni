@@ -2,6 +2,14 @@
 import Layout from '../layouts/Layout.astro';
 import GraduationTabContent from '../components/GraduationTabContent.astro';
 import PageHero from '../components/PageHero.astro';
+import { getCollection, render } from 'astro:content';
+
+const rawSecciones = await getCollection('proceso-graduacion');
+const secciones = rawSecciones.sort((a, b) => a.data.order - b.data.order);
+
+const rendered = await Promise.all(
+  secciones.map((entry) => render(entry)),
+);
 ---
 
 <Layout title="Proceso de Graduación - Universidad de Pamplona">
@@ -18,253 +26,37 @@ import PageHero from '../components/PageHero.astro';
       
       <!-- Simple Tabs Navigation -->
       <div class="simple-tabs">
-        <button class="simple-tab active" data-tab="trabajo-grado" type="button">
-          Trabajo de Grado (Investigación)
-        </button>
-        <button class="simple-tab" data-tab="practicas-empresariales" type="button">
-          Prácticas Empresariales
-        </button>
-        <button class="simple-tab" data-tab="especializacion" type="button">
-          Especialización (Posgrado)
-        </button>
-        <button class="simple-tab" data-tab="tramites-finales" type="button">
-          Trámites Finales
-        </button>
+        {
+          secciones.map((seccion, i) => (
+            <button
+              class={`simple-tab${i === 0 ? ' active' : ''}`}
+              data-tab={seccion.id}
+              type="button"
+            >
+              {seccion.data.title}
+            </button>
+          ))
+        }
       </div>
 
       <!-- Tab Content -->
       <div class="tab-content-wrapper">
-        <GraduationTabContent
-          id="trabajo-grado"
-          title="Trabajo de Grado (Investigación)"
-          imageSrc="/proceso/1.jpg"
-          imageAlt="Estudiantes graduándose"
-          active
-        >
-          <Fragment slot="intro">
-            <p>
-              Para optar al título de Ingeniero de Sistemas, los estudiantes deben desarrollar un trabajo de grado que demuestre
-              sus competencias académicas y profesionales.
-            </p>
-            <p>
-              Este proceso consta de varias etapas clave que garantizan la calidad y originalidad de la
-              investigación o desarrollo tecnológico presentado.
-            </p>
-          </Fragment>
-
-          <Fragment slot="details">
-            <h3>Requisitos Detallados:</h3>
-            <ul>
-              <li>
-                <strong>Créditos Académicos:</strong> Es necesario haber aprobado un mínimo de 150 créditos del plan de estudios, lo que asegura que el
-                estudiante cuente con conocimientos sólidos para abordar su proyecto final.
-              </li>
-              <li>
-                <strong>Propuesta Aprobada:</strong> El estudiante debe presentar una propuesta detallada ante un director asignado, quien evaluará la viabilidad
-                y relevancia del tema propuesto. La aprobación de esta propuesta es un paso esencial para iniciar el desarrollo del trabajo.
-              </li>
-              <li>
-                <strong>Normas APA:</strong> Todos los documentos entregados deben seguir el formato APA (7ª edición), incluyendo citaciones, referencias y
-                estructura del documento para garantizar uniformidad y profesionalismo en la presentación.
-              </li>
-            </ul>
-
-            <h3>Documentos y Recursos:</h3>
-            <ul>
-              <li>
-                <strong>Formato de Propuesta:</strong> Los estudiantes pueden descargar el formato oficial de propuesta de trabajo de grado en PDF, el cual
-                incluye las secciones requeridas y las instrucciones para su diligenciamiento.
-              </li>
-              <li>
-                <strong>Calendario de Sustentaciones:</strong> Es fundamental consultar las fechas establecidas para las sustentaciones, las cuales se publican
-                semestralmente en el calendario académico de la facultad.
-              </li>
-            </ul>
-          </Fragment>
-        </GraduationTabContent>
-
-        <GraduationTabContent
-          id="practicas-empresariales"
-          title="Prácticas Empresariales"
-          imageSrc="/proceso/2.png"
-          imageAlt="Estudiantes en prácticas empresariales"
-        >
-          <Fragment slot="intro">
-            <p>
-              Las prácticas empresariales son un componente esencial del plan de estudios, diseñado
-              para que los estudiantes apliquen sus conocimientos en un entorno laboral real.
-            </p>
-            <p>
-              Esta experiencia no solo fortalece sus habilidades técnicas, sino que también les permite construir una red profesional valiosa.
-            </p>
-          </Fragment>
-
-          <Fragment slot="details">
-            <h3>Requisitos Detallados:</h3>
-            <ul>
-              <li>
-                <strong>Créditos Aprobados:</strong> Los estudiantes deben haber cursado y aprobado al menos el 70% de los créditos
-                totales del programa para poder inscribirse en
-                las prácticas. Este requisito asegura que cuenten con
-                las bases necesarias para desempeñarse eficazmente en la empresa.
-              </li>
-              <li>
-                <strong>Convenio Institucional:</strong> Es indispensable que la empresa donde se realicen las prácticas
-                tenga un convenio vigente con la Universidad de
-                Pamplona. Este acuerdo garantiza que las actividades realizadas
-                cumplan con los objetivos académicos del programa.
-              </li>
-            </ul>
-
-            <h3>Proceso Paso a Paso:</h3>
-            <ul>
-              <li>
-                <strong>1. Inscripción:</strong> El estudiante debe registrar su intención de realizar prácticas a
-                través de la plataforma institucional, adjuntando los documentos requeridos.
-              </li>
-              <li>
-                <strong>2. Informes:</strong> Durante la práctica, se deben entregar informes periódicos que
-                detallen las actividades realizadas y los aprendizajes obtenidos.
-                Estos documentos serán evaluados por un tutor asignado.
-              </li>
-              <li>
-                <strong>3. Evaluación Final:</strong> Al concluir las prácticas, tanto el estudiante como la
-                empresa emiten una evaluación mutua, la cual forma parte del proceso de calificación
-              </li>
-            </ul>
-          </Fragment>
-        </GraduationTabContent>
-
-        <GraduationTabContent
-          id="especializacion"
-          title="Especialización (Posgrado)"
-          imageSrc="/proceso/2.png"
-          imageAlt="Estudiantes en prácticas empresariales"
-        >
-          <Fragment slot="intro">
-            <p>
-              La Universidad de Pamplona sí permite realizar un semestre de especialización como parte
-              de la modalidad de graduación del pregrado.
-            </p>
-            <p>
-              Una opción que permite reemplazar la práctica profesional o tesis por estudios de posgrado.
-              Gracias al a
-              <a
-                href="https://www.unipamplona.edu.co/unipamplona/portalIG/home_11/recursos/general/contenidos_subgeneral/inscripciones_presencial/04092023/instructivoacuerdo065.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
+        {
+          secciones.map((seccion, i) => {
+            const { Content } = rendered[i]!;
+            return (
+              <GraduationTabContent
+                id={seccion.id}
+                title={seccion.data.title}
+                imageSrc={seccion.data.imageSrc}
+                imageAlt={seccion.data.imageAlt}
+                active={i === 0}
               >
-                acuerdo 065 del 6 de diciembre de 2022
-              </a>,
-              que articula programas de pregrado y posgrado.
-            </p>
-          </Fragment>
-
-          <Fragment slot="details">
-            <h3>¿Quién puede optar?</h3>
-            <ul>
-              <li>
-                Estudiantes de décimo semestre (o último semestre)
-                que estén cursando el trabajo de grado y hayan cumplido
-                requisitos académicos del pregrado.
-              </li>
-            </ul>
-
-            <h3>Requisitos principales</h3>
-            <ul>
-              <li>
-                <strong>•</strong> Tener matrícula activa para el trabajo de grado en el pregrado.
-              </li>
-              <li>
-                <strong>•</strong> Presentar carta de intención al comité del
-                trabajo de grado dentro de los plazos establecidos.
-              </li>
-              <li>
-                <strong>•</strong> Obtener aval del director del programa de pregrado.
-              </li>
-              <li>
-                <strong>•</strong> Solicitud formal a la Oficina de Posgrados y confirmación
-                de la oferta académica del posgrado (especialización) para ese semestre.
-              </li>
-            </ul>
-
-            <h3>Proceso interno:</h3>
-            <ul>
-              <li>
-                <strong>1.</strong> Carta al comité de trabajo de grado (pregrado).
-              </li>
-              <li>
-                <strong>2.</strong> Aval del director académico.
-              </li>
-              <li>
-                <strong>3.</strong> Envío a Posgrados para autorización y verificación de
-                disponibilidad del programa.
-              </li>
-              <li>
-                <strong>4.</strong> Matrícula y cursado del semestre de especialización.
-              </li>
-            </ul>
-
-            <h3>¿Qué implica cursar la especialización?</h3>
-            <ul>
-              <li>
-                <strong>•</strong> El semestre se cursa como un “Diplomado”,
-                dividido en módulos (entre 10 y 12 módulos, cada uno con
-                aproximadamente 12 horas, totalizando cerca de 120 horas).
-              </li>
-              <li>
-                <strong>•</strong> Incluye componentes de formación investigativa y
-                culmina con un trabajo final (monografía o aplicación).
-              </li>
-            </ul>
-          </Fragment>
-        </GraduationTabContent>
-
-        <GraduationTabContent
-          id="tramites-finales"
-          title="Trámites Finales"
-          imageSrc="/proceso/3.png"
-          imageAlt="Trámites de graduación"
-        >
-          <Fragment slot="intro">
-            <p>
-              Una vez cumplidos los requisitos académicos, los estudiantes deben completar una serie de
-              trámites administrativos para formalizar su graduación.
-            </p>
-            <p>
-              Estos procedimientos son esenciales para garantizar que todo el proceso se
-              lleve a cabo conforme a las normativas institucionales.
-            </p>
-          </Fragment>
-
-          <Fragment slot="details">
-            <h3>Checklist de Trámites:</h3>
-            <ul>
-              <li>
-                <strong>Paz y Salvo Bibliotecario:</strong> Los estudiantes deben obtener un certificado que acredite que no
-                tienen pendientes con la biblioteca universitaria, ya sea por préstamos de libros o multas pendientes
-              </li>
-              <li>
-                <strong>Pago de Derechos de Grado::</strong> Es necesario cancelar los derechos de grado establecidos por la universidad,
-                los cuales cubren los costos administrativos y de ceremonia. Este pago debe realizarse
-                dentro de los plazos indicados para evitar retrasos en el proceso.
-              </li>
-            </ul>
-
-            <h3>Contacto y Asesoría:</h3>
-            <ul>
-              <li>
-                Para cualquier duda o inconveniente relacionado con estos trámites,
-                los estudiantes pueden comunicarse con la oficina
-                de graduaciones a través del correo electrónico
-                <a href="mailto:grado.ingenieria@unipamplona.edu.co">grado.ingenieria@unipamplona.edu.co</a>.
-              </li>
-              <li>
-                Además, el chatbot institucional está disponible para brindar asistencia inmediata y guiar a los estudiantes en cada paso del proceso.
-              </li>
-            </ul>
-          </Fragment>
-        </GraduationTabContent>
+                <Content />
+              </GraduationTabContent>
+            );
+          })
+        }
       </div>
     </div>
   </section>
@@ -370,14 +162,6 @@ import PageHero from '../components/PageHero.astro';
 </script>
 
 <style>
-  a {
-    text-decoration: underline;
-    color: #fa6a6a;
-    font-style: italic;
-  }
-
-
-
   /* Content Section */
   .content-section {
     padding: 40px 0 60px;
@@ -433,91 +217,6 @@ import PageHero from '../components/PageHero.astro';
     min-height: 600px; /* Prevenir saltos de layout */
   }
 
-  .tab-content {
-    display: none;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .tab-content.active {
-    display: block;
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* Content Layout */
-  .content-layout {
-    display: grid;
-    grid-template-columns: 350px 1fr;
-    gap: 40px;
-    align-items: start;
-    margin-bottom: 40px;
-  }
-
-  .content-image {
-    position: sticky;
-    top: 20px;
-  }
-
-  .main-image {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-    border-radius: 8px;
-    transition: transform 0.3s ease;
-  }
-
-  .content-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #333;
-    margin-bottom: 20px;
-    margin-top: 0;
-  }
-
-  .content-text p {
-    font-size: 1.1rem;
-    color: #555;
-    line-height: 1.7;
-    margin-bottom: 16px;
-  }
-
-  /* Content Details */
-  .content-details {
-    max-width: none;
-  }
-
-  .content-details h3 {
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: #333;
-    margin: 30px 0 15px 0;
-  }
-
-  .content-details ul {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 30px 0;
-  }
-
-  .content-details li {
-    padding: 12px 0;
-    font-size: 1rem;
-    line-height: 1.6;
-    color: #555;
-    border-bottom: 1px solid #f5f5f5;
-  }
-
-  .content-details li:last-child {
-    border-bottom: none;
-  }
-
-  .content-details strong {
-    color: #d32f2f;
-    font-weight: 600;
-  }
-
   /* Smooth transitions for view transitions */
   @view-transition {
     navigation: auto;
@@ -559,34 +258,8 @@ import PageHero from '../components/PageHero.astro';
       display: none;
     }
 
-    .content-layout {
-      grid-template-columns: 1fr;
-      gap: 18px;
-      margin-bottom: 26px;
-    }
-
-    .content-image {
-      position: static;
-    }
-
-    .content-title {
-      font-size: 1.75rem;
-      margin-bottom: 12px;
-    }
-
     .tab-content-wrapper {
       min-height: auto;
-    }
-
-    .content-details h3 {
-      font-size: 1.15rem;
-      margin: 22px 0 10px;
-    }
-
-    .content-details li {
-      padding: 10px 0;
-      font-size: 0.95rem;
-      line-height: 1.5;
     }
   }
 
@@ -606,29 +279,6 @@ import PageHero from '../components/PageHero.astro';
       font-size: 0.88rem;
       padding: 10px;
     }
-
-    .content-title {
-      font-size: 1.5rem;
-    }
-
-    .content-text p {
-      font-size: 0.95rem;
-      margin-bottom: 12px;
-    }
-
-    .main-image {
-      height: 210px;
-    }
-
-    .content-details h3 {
-      font-size: 1.05rem;
-      margin: 18px 0 8px;
-    }
-
-    .content-details li {
-      font-size: 0.9rem;
-      padding: 8px 0;
-    }
   }
 
   @media (max-width: 360px) {
@@ -639,14 +289,6 @@ import PageHero from '../components/PageHero.astro';
     .simple-tab {
       font-size: 0.84rem;
       min-height: 46px;
-    }
-
-    .content-title {
-      font-size: 1.35rem;
-    }
-
-    .main-image {
-      height: 190px;
     }
   }
 </style>
